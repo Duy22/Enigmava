@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Reflector {
 	
-	private ArrayList<Integer> numList;
+	private ArrayList<Integer> numList;  
 	
 	public Reflector(){
 		this.numList = new ArrayList<Integer>();
@@ -12,12 +12,15 @@ public class Reflector {
 			this.numList.add(i, i);
 		}
 	}
+	public ArrayList<Integer> getNumList(){
+		return this.numList;
+	}
 	
 	public int getNum(int index){
 		return this.numList.get(index);
 	}
 	public void setNum(int index, int value){
-		this.numList.add(index, value);
+		this.numList.set(index, value);
 	}
 	public Reflector getReflector(){
 		return this;

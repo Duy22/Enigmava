@@ -2,6 +2,8 @@ package engineTest;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +23,17 @@ public class ReflectorTest {
 	@After
 	public void tearDown() throws Exception {
 		ref = null;
+	}
+	
+	@Test
+	public void getNumListTest() {
+		ArrayList<Integer> list1 = ref.getNumList();
+		assertEquals(ref.getNumList(), list1);
+	}
+	
+	@Test
+	public void constructorTest(){
+		assertEquals(26, ref.getNumList().size());
 	}
 
 	@Test
