@@ -9,7 +9,9 @@ import org.junit.Test;
 import engine.Reflector;
 
 public class ReflectorTest {
-	protected Reflector ref;
+	private Reflector ref;
+	
+	//Reflector ref = new Reflector();
 	
 	@Before
 	public void setUp() throws Exception {
@@ -18,6 +20,7 @@ public class ReflectorTest {
 
 	@After
 	public void tearDown() throws Exception {
+		ref = null;
 	}
 
 	@Test
@@ -25,11 +28,12 @@ public class ReflectorTest {
 		int n = ref.getNum(5);
 		assertEquals(n, 5);
 	}
+	
 	@Test
 	public void setNumTest() {
 		ref.setNum(7, 89);
-		int n = ref.getNum(7);
-		assertEquals(n, 89);
+		assertEquals(ref.getNum(7), 89);
 	}
+
 
 }
