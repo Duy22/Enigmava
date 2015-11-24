@@ -18,6 +18,10 @@ public class ReflectorTest {
 		ref = new Reflector();
 	}
 
+	@After
+	public void tearDown() throws Exception {
+		ref = null;
+	}
 
 	@Test
 	public void getNumTest() {
@@ -31,8 +35,5 @@ public class ReflectorTest {
 		assertEquals(ref.getNum(7), 89);
 	}
 
-	@After
-	public void tearDown() throws Exception {
-		ref = null;
-	}
+
 }
