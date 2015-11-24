@@ -5,6 +5,6 @@ This is an acadamic project for the Initiation to IT Security course (INF1433) I
 
 This project must be terminated on December 21st 2015. 
 
-Anyone can use the sources or participate to the project.
+Feel free to use the sources or participate to the project.
 
 Have Fun ! :) 
