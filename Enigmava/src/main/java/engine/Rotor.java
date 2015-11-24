@@ -73,14 +73,16 @@ public class Rotor {
 	
 	public void moveRight(){
 		int upperNum = this.getUpperLaneValue(25);
-		for (int i=25;i<0;i--){
-			this.setUpperLane(i, i-1);
+		for (int i=25;i>0;i--){
+			int old = this.getUpperLaneValue(i-1);
+			this.setUpperLane(i, old);
 		}
 		this.setUpperLane(0, upperNum);
 		
 		int lowerNum = this.getLowerLaneValue(25);
-		for (int i=25;i<0;i--){
-			this.setLowerLane(i, i-1);
+		for (int i=25;i>0;i--){
+			int old = this.getLowerLaneValue(i-1);
+			this.setLowerLane(i, old);
 		}
 		this.setLowerLane(0, lowerNum);
 		

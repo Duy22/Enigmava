@@ -13,7 +13,6 @@ import engine.Reflector;
 public class ReflectorTest {
 	private Reflector ref;
 	
-	//Reflector ref = new Reflector();
 	
 	@Before
 	public void setUp() throws Exception {

@@ -107,10 +107,42 @@ public class RotorTest {
 			assertEquals(expected, actual);
 		}
 	}
-/*
+
 	@Test
 	public void testMoveRight() {
-		fail("Not yet implemented");
+		ArrayList<Integer> refUp = new ArrayList<Integer>();
+		for (int j=0;j<26;j++){
+			int value = rot.getUpperLaneValue(j);
+			refUp.add(j, value);
+		}
+		ArrayList<Integer> refLow = new ArrayList<Integer>();
+		
+		for (int j=0;j<26;j++){
+			int value = rot.getLowerLaneValue(j);
+			refLow.add(j, value);
+		}
+		
+		rot.moveRight();
+		
+		int expectedUp25 = refUp.get(25);
+		int actualUp25 = rot.getUpperLaneValue(0);
+		assertEquals(expectedUp25, actualUp25);
+		
+		for (int i=1;i<26;i++){
+			int expected = refUp.get(i-1);
+			int actual = rot.getUpperLaneValue(i);
+			assertEquals(expected, actual);
+		}
+		
+		int expectedDown25 = refLow.get(25);
+		int actualDown25 = rot.getLowerLaneValue(0);
+		assertEquals(expectedDown25, actualDown25);
+		
+		for (int i=1;i<26;i++){
+			int expected = refLow.get(i-1);
+			int actual = rot.getLowerLaneValue(i);
+			assertEquals(expected, actual);
+		}
 	}
-*/
+
 }
