@@ -35,5 +35,10 @@ public class ReflectorTest {
 		assertEquals(ref.getNum(7), 89);
 	}
 
+	@Test
+	public void getReflectorTest() {
+		Reflector ref2 = ref.getReflector();
+		assertEquals(ref, ref2);
+	}
 
 }
