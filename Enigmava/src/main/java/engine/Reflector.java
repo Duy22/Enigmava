@@ -8,7 +8,7 @@ public class Reflector {
 	
 	public Reflector(){
 		this.numList = new ArrayList<Integer>();
-		for (int i=0;i<26;){
+		for (int i=0;i<26;i++){
 			this.numList.add(i, i);
 		}
 	}
