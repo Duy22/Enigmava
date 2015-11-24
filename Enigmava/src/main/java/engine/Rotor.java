@@ -10,7 +10,9 @@ public class Rotor {
 	
 	public Rotor() {
 		super();
-		for (int i=0;i>26;i++){
+		this.upperLane = new ArrayList<Integer>();
+		this.lowerLane = new ArrayList<Integer>();
+		for (int i=0;i<26;i++){
 			this.upperLane.add(i, i);
 			this.lowerLane.add(i, i*10);
 		}
@@ -21,11 +23,19 @@ public class Rotor {
 		return this;
 	}
 	
-	public int getUpperLane(int index){
+	public ArrayList<Integer> getUpperLane(){
+		return this.upperLane;
+	}
+	
+	public ArrayList<Integer> getLowerLane(){
+		return this.lowerLane;
+	}
+	
+	public int getUpperLaneValue(int index){
 		return (this.upperLane.get(index));
 	}
 	
-	public int getLowerLane(int index){
+	public int getLowerLaneValue(int index){
 		return (this.lowerLane.get(index));
 	}
 	
@@ -46,31 +56,33 @@ public class Rotor {
 	}
 	
 	public void moveLeft(){
-		int upperNum = this.getUpperLane(0);
+		int upperNum = this.getUpperLaneValue(0);
 		for (int i=0;i<25;i++){
-			this.setUpperLane(i, this.getUpperLane(i+1));
-			this.setUpperLane(25, upperNum);
+			int old = this.getUpperLaneValue(i+1);
+			this.setUpperLane(i, old);
 		}
+		this.setUpperLane(25, upperNum);
 		
-		int lowerNum = this.getLowerLane(0);
+		int lowerNum = this.getLowerLaneValue(0);
 		for (int i=0;i<25;i++){
-			this.setLowerLane(i, this.getLowerLane(i+1));
-			this.setLowerLane(25, lowerNum);
+			int old = this.getLowerLaneValue(i+1);
+			this.setLowerLane(i, old);
 		}
+		this.setLowerLane(25, lowerNum);
 	}
 	
 	public void moveRight(){
-		int upperNum = this.getUpperLane(25);
+		int upperNum = this.getUpperLaneValue(25);
 		for (int i=25;i<0;i--){
 			this.setUpperLane(i, i-1);
-			this.setUpperLane(0, upperNum);
 		}
+		this.setUpperLane(0, upperNum);
 		
-		int lowerNum = this.getLowerLane(25);
+		int lowerNum = this.getLowerLaneValue(25);
 		for (int i=25;i<0;i--){
 			this.setLowerLane(i, i-1);
-			this.setLowerLane(0, upperNum);
 		}
+		this.setLowerLane(0, lowerNum);
 		
 	}
 }
