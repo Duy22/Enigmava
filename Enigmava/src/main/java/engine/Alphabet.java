@@ -7,7 +7,7 @@ private ArrayList<Character> alphaList;
 	
 	public Alphabet(){
 		this.alphaList = new ArrayList<Character>();
-		int initAlph = 65;
+		int initAlph = 97;
 			for (int i=0;i<26;i++){
 				int ascii = initAlph +i;
 				this.alphaList.add(i, (char)(ascii));
