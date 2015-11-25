@@ -1,7 +1,7 @@
 # Enigmava
 Simple enigma encryptor and decryptor coded in Java.
 
-This is an acadamic project for the Initiation to IT Security course (INF1433) I am attending at Université de Québec en Outaouais.
+This is an acadamic project for the Initiation to IT Security course I am attending at Université de Québec en Outaouais.
 
 This project must be done on December 21st 2015. 
 
