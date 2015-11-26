@@ -12,6 +12,7 @@ public class Reflector {
 			this.numList.add(i, i);
 		}
 	}
+	
 	public ArrayList<Integer> getNumList(){
 		return this.numList;
 	}
@@ -19,11 +20,12 @@ public class Reflector {
 	public int getNum(int index){
 		return this.numList.get(index);
 	}
+	
 	public void setNum(int index, int value){
 		this.numList.set(index, value);
 	}
+	
 	public Reflector getReflector(){
 		return this;
 	}
-
 }

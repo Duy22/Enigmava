@@ -3,7 +3,8 @@ package engine;
 import java.util.ArrayList;
 
 public class Alphabet {
-private ArrayList<Character> alphaList;  
+
+	private ArrayList<Character> alphaList;  
 	
 	public Alphabet(){
 		this.alphaList = new ArrayList<Character>();
@@ -14,6 +15,7 @@ private ArrayList<Character> alphaList;
 			}
 			
 	}
+	
 	public ArrayList<Character> getAlphaList(){
 		return this.alphaList;
 	}
@@ -22,9 +24,8 @@ private ArrayList<Character> alphaList;
 		return this.alphaList.get(index);
 
 	}
+	
 	public Alphabet getAlphabet(){
 		return this;
 	}
-
-
 }

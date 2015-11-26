@@ -5,7 +5,9 @@ import java.util.ArrayList;
 public class Rotor {
 
 	private ArrayList<Integer> upperLane;
+	
 	private ArrayList<Integer> lowerLane;
+	
 	private int currentPosition;
 	
 	public Rotor() {
