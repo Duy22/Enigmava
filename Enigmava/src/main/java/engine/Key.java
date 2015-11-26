@@ -33,13 +33,13 @@ public class Key {
 	}
 	
 	public void setSequenceRotor(int index, Rotor rotor){
-		if (index <= 3 && index >= 1){
+		if (index < 3 && index >= 0){
 			this.sequenceRotor.set(index, rotor);
 		}
 	}
 	
-	public void setSequenceInit(int index, int init){
-		if (index <= 3 && index >= 1){
+	public void setSequenceInit(int index, Integer init){
+		if (index < 3 && index >= 0){
 			this.sequenceInit.set(index, init);
 		}
 	}
