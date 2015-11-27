@@ -16,7 +16,7 @@ public class Key {
 		sequenceRotor.add(1, rotor2);
 		sequenceRotor.add(2, rotor3);
 		for (int i=0;i<3;i++){
-			sequenceInit.add(0);
+			sequenceInit.add(i);
 		}
 	}
 	
