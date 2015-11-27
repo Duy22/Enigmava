@@ -49,7 +49,8 @@ public class CryptAlgo {
 	public void initReflector(){
 		int decrement = 27;
 		for (int i=0; i<26; i++){
-			this.reflector.setNum(i, decrement-2);
+			decrement = decrement -2;
+			this.reflector.setNum(i, decrement);
 		}
 	}
 	
@@ -84,7 +85,7 @@ public class CryptAlgo {
 		//lower lane settings
 		this.rotorList.get(0).setLowerLane(0, 10);
 		this.rotorList.get(0).setLowerLane(1, 21);
-		this.rotorList.get(0).setLowerLane(2, -5);
+		this.rotorList.get(0).setLowerLane(2, 5);
 		this.rotorList.get(0).setLowerLane(3, -17);
 		this.rotorList.get(0).setLowerLane(4, 21);
 		this.rotorList.get(0).setLowerLane(5, -4);
@@ -107,7 +108,7 @@ public class CryptAlgo {
 		this.rotorList.get(0).setLowerLane(22, 2);
 		this.rotorList.get(0).setLowerLane(23, -3);
 		this.rotorList.get(0).setLowerLane(24, -21);
-		this.rotorList.get(0).setLowerLane(25, 4);
+		this.rotorList.get(0).setLowerLane(25, -4);
 	}
 	
 	public void initRotor2(){
@@ -136,7 +137,7 @@ public class CryptAlgo {
 		this.rotorList.get(1).setUpperLane(21, -18);
 		this.rotorList.get(1).setUpperLane(22, -9);
 		this.rotorList.get(1).setUpperLane(23, -1);
-		this.rotorList.get(1).setUpperLane(24, -11);
+		this.rotorList.get(1).setUpperLane(24, -22);
 		this.rotorList.get(1).setUpperLane(25, -16);
 		//lower lane settings
 		this.rotorList.get(1).setLowerLane(0, 3);
@@ -190,7 +191,7 @@ public class CryptAlgo {
 		this.rotorList.get(2).setUpperLane(17, -16);
 		this.rotorList.get(2).setUpperLane(18, 2);
 		this.rotorList.get(2).setUpperLane(19, -1);
-		this.rotorList.get(2).setUpperLane(20, -7);
+		this.rotorList.get(2).setUpperLane(20, -17);
 		this.rotorList.get(2).setUpperLane(21, -5);
 		this.rotorList.get(2).setUpperLane(22, -14);
 		this.rotorList.get(2).setUpperLane(23, -9);
@@ -227,7 +228,8 @@ public class CryptAlgo {
 	
 	public String encrypt(){
 		this.decryptedMessage = this.decryptedMessage.toLowerCase();
-		this.encryptedMessage = this.decryptedMessage;
+		//this.encryptedMessage = this.decryptedMessage;
+		char[] charList = this.decryptedMessage.toCharArray();
 		int size = this.decryptedMessage.length();
 		this.initRotor1();
 		this.initRotor2();
@@ -240,18 +242,18 @@ public class CryptAlgo {
 					if (this.decryptedMessage.charAt(i)==this.alphabet.getLetter(j)){
 						int k,l,m,n,o,p,q;
 						k = this.rotorList.get(0).getLowerLaneValue(j);
-						l = this.rotorList.get(1).getLowerLaneValue((j+k)%26);
-						m = this.rotorList.get(2).getLowerLaneValue((k+l)%26);
-						n = this.reflector.getNum((l+m)%26); //this line is buggy, needs a fix
-						o = this.rotorList.get(2).getUpperLaneValue((m+n)%26);
-						p = this.rotorList.get(1).getUpperLaneValue((n+o)%26);
-						q = this.rotorList.get(2).getUpperLaneValue((o+p)%26);
-						this.encryptedMessage.replace(this.encryptedMessage.charAt(i), this.alphabet.getLetter(q));
+						l = this.rotorList.get(1).getLowerLaneValue(((j+k)%26+26)%26);
+						m = this.rotorList.get(2).getLowerLaneValue(((j+k+l)%26+26)%26);
+						n = this.reflector.getNum(((j+k+l+m+26)%26+26)%26);
+						o = this.rotorList.get(2).getUpperLaneValue(((j+k+l+m+n)%26+26)%26);
+						p = this.rotorList.get(1).getUpperLaneValue(((j+k+l+m+n+o)%26+26)%26);
+						q = this.rotorList.get(0).getUpperLaneValue(((j+k+l+m+n+o+p)%26+26)%26);
+						charList[i] = this.alphabet.getLetter(((j+k+l+m+n+o+p+q)%26+26)%26);
 					}
 				}
 			}
 		}
-		
+		this.encryptedMessage = new String(charList);
 		return this.encryptedMessage;
 	}
 	
