@@ -1,5 +1,6 @@
 package engine;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 
 public class CryptAlgo {
@@ -223,7 +224,7 @@ public class CryptAlgo {
 	
 	public String encrypt(){
 		this.input = this.input.toLowerCase();
-		//this.encryptedMessage = this.input;
+		this.input = Normalizer.normalize(this.input, Normalizer.Form.NFD);
 		char[] charList = this.input.toCharArray();
 		int size = this.input.length();
 		this.initRotor1();
