@@ -6,9 +6,8 @@ public class CryptAlgo {
 
 	private Key key;
 
-	private String encryptedMessage;
 
-	private String decryptedMessage;
+	private String input;
 
 	private Reflector reflector;
 
@@ -19,8 +18,7 @@ public class CryptAlgo {
 	public CryptAlgo(Key k, ArrayList<Rotor> rL, Reflector ref, Alphabet alpha){
 		super();
 		this.key = k;
-		this.encryptedMessage = "";
-		this.decryptedMessage = "";
+		this.input = "";
 		this.reflector = ref;
 		this.rotorList = rL;
 		this.alphabet = alpha;
@@ -38,12 +36,9 @@ public class CryptAlgo {
 		this.alphabet = alpha;
 	}
 	
-	public void setEncrypt(String s){
-		this.encryptedMessage = s;
-	}
 	
-	public void setDecrypt(String s){
-		this.decryptedMessage = s;
+	public void setInput(String s){
+		this.input = s;
 	}
 	
 	public void initReflector(){
@@ -227,19 +222,22 @@ public class CryptAlgo {
 	}
 	
 	public String encrypt(){
-		this.decryptedMessage = this.decryptedMessage.toLowerCase();
-		//this.encryptedMessage = this.decryptedMessage;
-		char[] charList = this.decryptedMessage.toCharArray();
-		int size = this.decryptedMessage.length();
+		this.input = this.input.toLowerCase();
+		//this.encryptedMessage = this.input;
+		char[] charList = this.input.toCharArray();
+		int size = this.input.length();
 		this.initRotor1();
 		this.initRotor2();
 		this.initRotor3();
 		this.initReflector();
+		double rotorNum = 0;
 		
 		for (int i=0;i<size;i++){
-			if (this.decryptedMessage.charAt(i) != ' '){
+			rotorNum = (Math.floor(i/26))%3;// used to determine which rotor will roll, given the key
+			int rotorInt = (int)rotorNum;
+			if (this.input.charAt(i) != ' '){
 				for (int j=0;j<26;j++){
-					if (this.decryptedMessage.charAt(i)==this.alphabet.getLetter(j)){
+					if (this.input.charAt(i)==this.alphabet.getLetter(j)){
 						int k,l,m,n,o,p,q;
 						k = this.rotorList.get(0).getLowerLaneValue(j);
 						l = this.rotorList.get(1).getLowerLaneValue(((j+k)%26+26)%26);
@@ -249,16 +247,16 @@ public class CryptAlgo {
 						p = this.rotorList.get(1).getUpperLaneValue(((j+k+l+m+n+o)%26+26)%26);
 						q = this.rotorList.get(0).getUpperLaneValue(((j+k+l+m+n+o+p)%26+26)%26);
 						charList[i] = this.alphabet.getLetter(((j+k+l+m+n+o+p+q)%26+26)%26);
+						if (this.key.getSequenceRotor().get(rotorInt) == this.rotorList.get(2)){
+							this.key.getSequenceRotor().get(rotorInt).moveLeft();
+						} else {
+							this.key.getSequenceRotor().get(rotorInt).moveRight();
+						}
 					}
 				}
 			}
 		}
-		this.encryptedMessage = new String(charList);
-		return this.encryptedMessage;
-	}
-	
-	public String decrypt(){
-		
-		return this.decryptedMessage;
+		String output = new String(charList);
+		return output;
 	}
 }
