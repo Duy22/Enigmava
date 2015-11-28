@@ -224,7 +224,7 @@ public class CryptAlgo {
 	
 	public String encrypt(){
 		this.input = this.input.toLowerCase();
-		this.input = Normalizer.normalize(this.input, Normalizer.Form.NFD);
+		this.input = Normalizer.normalize(this.input, Normalizer.Form.NFKD);
 		char[] charList = this.input.toCharArray();
 		int size = this.input.length();
 		this.initRotor1();
