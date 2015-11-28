@@ -35,7 +35,6 @@ public class RotorTest {
 		Rotor rot2 = new Rotor();
 		assertEquals(5, rot2.getUpperLaneValue(5));
 		assertEquals(50, rot2.getLowerLaneValue(5));
-		assertEquals(0, rot2.getCurrentPosition());
 	}
 
 	@Test
@@ -49,11 +48,6 @@ public class RotorTest {
 	}
 
 	@Test
-	public void testGetCurrentPosition() {
-		assertEquals(0, rot.getCurrentPosition());
-	}
-
-	@Test
 	public void testSetUpperLane() {
 		rot.setUpperLane(6, 78);
 		assertEquals(78, rot.getUpperLaneValue(6));
@@ -63,12 +57,6 @@ public class RotorTest {
 	public void testSetLowerLane() {
 		rot.setLowerLane(6, 78);
 		assertEquals(78, rot.getLowerLaneValue(6));
-	}
-
-	@Test
-	public void testSetCurrentPosition() {
-		rot.setCurrentPosition(56);
-		assertEquals(56, rot.getCurrentPosition());
 	}
 
 	@Test

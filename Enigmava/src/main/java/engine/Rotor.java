@@ -8,8 +8,6 @@ public class Rotor {
 	
 	private ArrayList<Integer> lowerLane;
 	
-	private int currentPosition;
-	
 	public Rotor() {
 		super();
 		this.upperLane = new ArrayList<Integer>();
@@ -18,7 +16,6 @@ public class Rotor {
 			this.upperLane.add(i, i);
 			this.lowerLane.add(i, i*10);
 		}
-		this.currentPosition = 0;
 	}
 	
 	public Rotor getRotor(){
@@ -41,20 +38,12 @@ public class Rotor {
 		return (this.lowerLane.get(index));
 	}
 	
-	public int getCurrentPosition(){
-		return this.currentPosition;
-	}
-	
 	public void setUpperLane(int index, int value){
 		this.upperLane.set(index, value);
 	}
 	
 	public void setLowerLane(int index, int value){
 		this.lowerLane.set(index, value);
-	}
-	
-	public void setCurrentPosition(int value){
-		this.currentPosition = value;
 	}
 	
 	public void moveLeft(){

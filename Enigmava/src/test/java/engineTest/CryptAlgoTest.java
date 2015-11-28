@@ -58,13 +58,42 @@ public class CryptAlgoTest {
 				+ "expetenda elaboraret in sed. Enim magna ei cum, harum vituperatoribus "
 				+ "et eam. Assum signiferumque et usu. Ea nam illud intellegat, his no labitur "
 				+ "repudiare, ne etiam doming melius his.";
+		
 		String sl = s.toLowerCase();
 		algo.setInput(sl);
 		String u = algo.encrypt();
 		algo.setInput(u);
 		String v = algo.encrypt();
-		assertEquals(sl, v);
-		assertNotEquals(sl, u);
+		assertEquals(sl, v); // tests that the original message is the same as the double encrypted message
+		assertNotEquals(sl, u); // tests that the original message and the simple encrypted message are different
+		
+		//Modifying the rotor sequence
+		k.setSequenceRotor(0, rot3);
+		k.setSequenceRotor(1, rot1);
+		k.setSequenceRotor(2, rot2);
+		algo.setInput(sl);
+		String x = algo.encrypt();
+		algo.setInput(x);
+		String y = algo.encrypt();
+		assertEquals(sl, y);// tests that the original message is the same as the double encrypted message
+		assertNotEquals(x, y);// tests that the original message and the simple encrypted message are different
+		assertNotEquals(x, u);// tests that the encrypted message is different from the previous encrypted message
+		
+		//Modifying the initial positions of the rotors
+		k.setSequenceInit(0, 5);
+		k.setSequenceInit(1, -69);
+		k.setSequenceInit(2, 10);
+		algo.setInput(sl);
+		String a = algo.encrypt();
+		algo.setInput(a);
+		String b = algo.encrypt();
+		algo.setInput(b);
+		assertEquals(sl, b);// tests that the original message is the same as the double encrypted message
+		assertNotEquals(a, b);// tests that the original message and the simple encrypted message are different
+		assertNotEquals(x, a);// tests that the encrypted message is different from the previous encrypted message
+		
+		
+		
 	}
 
 }

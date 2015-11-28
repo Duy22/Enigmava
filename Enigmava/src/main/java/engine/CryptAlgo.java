@@ -7,7 +7,6 @@ public class CryptAlgo {
 
 	private Key key;
 
-
 	private String input;
 
 	private Reflector reflector;
@@ -36,8 +35,7 @@ public class CryptAlgo {
 	public void setAlphabet(Alphabet alpha){
 		this.alphabet = alpha;
 	}
-	
-	
+		
 	public void setInput(String s){
 		this.input = s;
 	}
