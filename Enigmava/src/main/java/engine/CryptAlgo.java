@@ -273,7 +273,7 @@ public class CryptAlgo {
 					p = this.rotorList.get(1).getUpperLaneValue(((j+k+l+m+n+o)%26+26)%26);
 					q = this.rotorList.get(0).getUpperLaneValue(((j+k+l+m+n+o+p)%26+26)%26);
 					charList[i] = this.alphabet.getLetter(((j+k+l+m+n+o+p+q)%26+26)%26); // end of the encryption
-					if (this.key.getSequenceRotor().get(rotorInt) == this.rotorList.get(2)){ // moves the rotor to the left if rotor3
+					if (this.key.getSequenceOrientation().get(rotorInt) == true){ // moves the rotor to the left if true
 						this.key.getSequenceRotor().get(rotorInt).moveLeft();
 					} else {
 						this.key.getSequenceRotor().get(rotorInt).moveRight(); // moves it to the right otherwise
