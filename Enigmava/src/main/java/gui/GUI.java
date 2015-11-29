@@ -317,14 +317,6 @@ public class GUI extends JFrame {
 		gbc_comboBox_5.gridy = 1;
 		lowerPanel.add(comboBox_5, gbc_comboBox_5);
 		
-		btnNewButton = new JButton("Set");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.gridwidth = 2;
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 4;
-		gbc_btnNewButton.gridy = 1;
-		lowerPanel.add(btnNewButton, gbc_btnNewButton);
-		
 		lblLeftOrRight = new JLabel("Left or Right");
 		lblLeftOrRight.setFont(new Font("Dialog", Font.BOLD, 8));
 		GridBagConstraints gbc_lblLeftOrRight = new GridBagConstraints();
@@ -361,6 +353,14 @@ public class GUI extends JFrame {
 		gbc_comboBox_2.gridy = 2;
 		lowerPanel.add(comboBox_2, gbc_comboBox_2);
 		
+		btnNewButton = new JButton("Set");
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.gridwidth = 3;
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton.gridx = 4;
+		gbc_btnNewButton.gridy = 2;
+		lowerPanel.add(btnNewButton, gbc_btnNewButton);
+		
 		lblInitialRotations = new JLabel("Initial Rotations");
 		lblInitialRotations.setFont(new Font("Dialog", Font.BOLD, 8));
 		GridBagConstraints gbc_lblInitialRotations = new GridBagConstraints();
@@ -371,6 +371,7 @@ public class GUI extends JFrame {
 		
 		spinner_1 = new JSpinner();
 		GridBagConstraints gbc_spinner_1 = new GridBagConstraints();
+		gbc_spinner_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spinner_1.insets = new Insets(0, 0, 5, 5);
 		gbc_spinner_1.gridx = 1;
 		gbc_spinner_1.gridy = 3;
@@ -378,6 +379,7 @@ public class GUI extends JFrame {
 		
 		spinner_3 = new JSpinner();
 		GridBagConstraints gbc_spinner_3 = new GridBagConstraints();
+		gbc_spinner_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spinner_3.insets = new Insets(0, 0, 5, 5);
 		gbc_spinner_3.gridx = 2;
 		gbc_spinner_3.gridy = 3;
@@ -385,6 +387,7 @@ public class GUI extends JFrame {
 		
 		spinner_5 = new JSpinner();
 		GridBagConstraints gbc_spinner_5 = new GridBagConstraints();
+		gbc_spinner_5.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spinner_5.insets = new Insets(0, 0, 5, 5);
 		gbc_spinner_5.gridx = 3;
 		gbc_spinner_5.gridy = 3;
