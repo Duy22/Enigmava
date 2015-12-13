@@ -6,19 +6,15 @@ import java.util.ArrayList;
 public class CryptAlgo {
 
 	private Key key;
-
 	private String input;
-
 	private Reflector reflector;
-
 	private ArrayList<Rotor> rotorList;
-	
 	private Alphabet alphabet;
 	
 	public CryptAlgo(Key k, ArrayList<Rotor> rL, Reflector ref, Alphabet alpha){
 		super();
 		this.key = k;
-		this.input = "";
+		this.input = new String("");
 		this.reflector = ref;
 		this.rotorList = rL;
 		this.alphabet = alpha;
