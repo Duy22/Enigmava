@@ -44,24 +44,24 @@ public class QuickTest {
 		String x = algo.encrypt();
 		System.out.println(x);
 		
-		String l = "Une fois une lettre est encryptée, un des trois rotors va tourner d’un cran (décalage"
-				+ " d’une position des deux lignes du rotor en même temps) avant de commencer"
-				+ " l’encryption de la lettre suivante. C’est la valeur de la clé qui détermine le rotor qui doit"
-				+ " commencer à tourner en premier et dans quelle direction il le fait, quel serait le"
-				+ "deuxième et le troisième rotor à tourner et dans quelles directions.".toLowerCase();
+		String l = "Une fois une lettre est encryptÃ©e, un des trois rotors va tourner dâ€™un cran (dÃ©calage"
+				+ " dâ€™une position des deux lignes du rotor en mÃªme temps) avant de commencer"
+				+ " lâ€™encryption de la lettre suivante. Câ€™est la valeur de la clÃ© qui dÃ©termine le rotor qui doit"
+				+ " commencer Ã  tourner en premier et dans quelle direction il le fait, quel serait le"
+				+ "deuxiÃ¨me et le troisiÃ¨me rotor Ã  tourner et dans quelles directions.".toLowerCase();
 		System.out.println(l);
 		
 		algo.setInput(l);
 		System.out.println(algo.encrypt());
 		
-		String h = "gqm lmnm otx nfcdan ldo vhfxvjrǵl, "
-				+ "em swy doqra krjlhc wj ldhdmox b’ca ktjm "
-				+ "(rẃatqkbr w’jmq gyvygoze ulb ptdt gplifm pp "
-				+ "wudhm rt xb̂in kjxfu) dlxdp xp aikekayaj "
-				+ "m’neibtzrgvs cy vi zjxlyl mfeglxji. s’oly vj "
-				+ "hkfsqf on jd upí dps mv́laldomd wj cubld rrq qury agoxjoyup"
-				+ " r̀ ukxvjik dr nbmovoo kn rmcy ndrwvf gyihwvkhq za so niua, "
-				+ "idxq qsjwwq nhctihwẁhv mz kh uzaapxìuq ojjwb g̀ iffhebq tz ymba"
+		String h = "gqm lmnm otx nfcdan ldo vhfxvjrgÌ�l, "
+				+ "em swy doqra krjlhc wj ldhdmox bâ€™ca ktjm "
+				+ "(rwÌ�atqkbr wâ€™jmq gyvygoze ulb ptdt gplifm pp "
+				+ "wudhm rt xbÌ‚in kjxfu) dlxdp xp aikekayaj "
+				+ "mâ€™neibtzrgvs cy vi zjxlyl mfeglxji. sâ€™oly vj "
+				+ "hkfsqf on jd upiÌ� dps mvÌ�laldomd wj cubld rrq qury agoxjoyup"
+				+ " rÌ€ ukxvjik dr nbmovoo kn rmcy ndrwvf gyihwvkhq za so niua, "
+				+ "idxq qsjwwq nhctihwwÌ€hv mz kh uzaapxiÌ€uq ojjwb gÌ€ iffhebq tz ymba"
 				+ " rqdvnpt aojbtvpnly.";
 		algo.setInput(h);
 		System.out.println(algo.encrypt());
