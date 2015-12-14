@@ -10,6 +10,7 @@ public class CryptAlgo {
 	private Reflector reflector;
 	private ArrayList<Rotor> rotorList;
 	private Alphabet alphabet;
+	private int position;
 	
 	public CryptAlgo(Key k, ArrayList<Rotor> rL, Reflector ref, Alphabet alpha){
 		super();
@@ -18,6 +19,7 @@ public class CryptAlgo {
 		this.reflector = ref;
 		this.rotorList = rL;
 		this.alphabet = alpha;
+		this.position = 0;
 	}
 	
 	public void setKey(Key k){
