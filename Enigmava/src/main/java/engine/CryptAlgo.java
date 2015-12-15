@@ -38,6 +38,14 @@ public class CryptAlgo {
 		this.input = s;
 	}
 	
+	public void setPosition(int position) {
+		this.position = position;
+	}
+	
+	public int getPosition() {
+		return this.position;
+	}
+	
 	public void initReflector(){
 		int decrement = 27;
 		for (int i=0; i<26; i++){
@@ -222,7 +230,6 @@ public class CryptAlgo {
 		this.input = this.input.toLowerCase();
 		this.input = Normalizer.normalize(this.input, Normalizer.Form.NFKD);
 		char[] charList = this.input.toCharArray();
-		int size = this.input.length();
 		this.initRotor1();
 		this.initRotor2();
 		this.initRotor3();
@@ -256,38 +263,43 @@ public class CryptAlgo {
 				}
 			}
 		}
-		int position = 0;
-		nextStep(position, size, rotorNum, charList);
+		nextStep(rotorNum, charList);
 		String output = new String(charList);
 		return output;
 	}
 	
-	public char[] nextStep(int position, int size, double rotorNum, char charList[]) {
-				int i = position;	
-				while(i<size) {
-					rotorNum = (Math.floor(i/25))%3;// used to determine which rotor will roll, given the key
-					int rotorInt = (int)rotorNum;
-					for (int j=0;j<26;j++){ // for each letter of the alphabet
-						if (this.input.charAt(i)==this.alphabet.getLetter(j)){// compares the input character to the letter of the alphabet
-							int k,l,m,n,o,p,q;
-							k = this.rotorList.get(0).getLowerLaneValue(j); //beginning of the encryption
-							l = this.rotorList.get(1).getLowerLaneValue(((j+k)%26+26)%26);
-							m = this.rotorList.get(2).getLowerLaneValue(((j+k+l)%26+26)%26);
-							n = this.reflector.getNum(((j+k+l+m+26)%26+26)%26);
-							o = this.rotorList.get(2).getUpperLaneValue(((j+k+l+m+n)%26+26)%26);
-							p = this.rotorList.get(1).getUpperLaneValue(((j+k+l+m+n+o)%26+26)%26);
-							q = this.rotorList.get(0).getUpperLaneValue(((j+k+l+m+n+o+p)%26+26)%26);
-							charList[i] = this.alphabet.getLetter(((j+k+l+m+n+o+p+q)%26+26)%26); // end of the encryption
-							if (this.key.getSequenceOrientation().get(rotorInt) == true){ // moves the rotor to the left if true
-								this.key.getSequenceRotor().get(rotorInt).moveLeft();
-							} else {
-								this.key.getSequenceRotor().get(rotorInt).moveRight(); // moves it to the right otherwise
-							}
+	public char nextStep(double rotorNum, char charList[]) {
+		int i = this.getPosition();
+		int size = this.input.length();
+		char lettre = 0;
+		if(i<size) {
+			rotorNum = (Math.floor(i/25))%3;// used to determine which rotor will roll, given the key
+			int rotorInt = (int)rotorNum;
+			for (int j=0;j<26;j++){ // for each letter of the alphabet
+				if (this.input.charAt(i)==this.alphabet.getLetter(j)){// compares the input character to the letter of the alphabet
+					int k,l,m,n,o,p,q;
+					k = this.rotorList.get(0).getLowerLaneValue(j); //beginning of the encryption
+					l = this.rotorList.get(1).getLowerLaneValue(((j+k)%26+26)%26);
+					m = this.rotorList.get(2).getLowerLaneValue(((j+k+l)%26+26)%26);
+					n = this.reflector.getNum(((j+k+l+m+26)%26+26)%26);
+					o = this.rotorList.get(2).getUpperLaneValue(((j+k+l+m+n)%26+26)%26);
+					p = this.rotorList.get(1).getUpperLaneValue(((j+k+l+m+n+o)%26+26)%26);
+					q = this.rotorList.get(0).getUpperLaneValue(((j+k+l+m+n+o+p)%26+26)%26);
+					lettre = this.alphabet.getLetter(((j+k+l+m+n+o+p+q)%26+26)%26); // end of the encryption
+					if (this.key.getSequenceOrientation().get(rotorInt) == true){ // moves the rotor to the left if true
+						this.key.getSequenceRotor().get(rotorInt).moveLeft();
 						}
+					else {
+						this.key.getSequenceRotor().get(rotorInt).moveRight(); // moves it to the right otherwise
 					}
 				}
-				i++;
-			return charList;
+			}
+			i++;
+		}
+		else {
+			System.out.println("Next step cannot be processed because the decryption or encryption is complete");
+		}
+		return lettre;
 	}
 	
 }
