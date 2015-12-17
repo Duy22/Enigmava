@@ -14,6 +14,7 @@ public class CryptAlgo {
 	private String output;
 	private double rotorNum;
 	private char[] charList;
+	private int algoIndex;
 
 	public CryptAlgo(Key k, ArrayList<Rotor> rL, Reflector ref, Alphabet alpha) {
 		super();
@@ -25,6 +26,8 @@ public class CryptAlgo {
 		this.position = 0;
 		this.output = new String("");
 		this.rotorNum = 0;
+		this.algoIndex = 0;
+
 	}
 
 	public void setKey(Key k) {
@@ -282,7 +285,7 @@ public class CryptAlgo {
 		int size = this.input.length();
 		if (this.position < size) { // to check if the current position is still
 									// in the input string
-			this.rotorNum = (Math.floor(this.position / 25)) % 3;// used to
+			this.rotorNum = (Math.floor(this.algoIndex / 25)) % 3;// used to
 																	// determine
 																	// which
 																	// rotor
@@ -316,7 +319,8 @@ public class CryptAlgo {
 					charList[this.position] = this.alphabet.getLetter(alphaIndex); // end
 																					// of
 																					// the
-																					// encryption
+																					// encryptio
+					this.algoIndex++;
 					// this.setOutput(this.output+=outputLetter);
 					/*
 					 * and also add the encrypted character to the output string
@@ -330,6 +334,7 @@ public class CryptAlgo {
 																					// if
 																					// true
 						this.key.getSequenceRotor().get(rotorInt).moveLeft();
+						System.out.println(rotorInt);
 					}
 					else {
 						this.key.getSequenceRotor().get(rotorInt).moveRight(); // moves
@@ -338,6 +343,7 @@ public class CryptAlgo {
 																				// the
 																				// right
 																				// otherwise
+						System.out.println(rotorInt);
 					}
 				}
 				
