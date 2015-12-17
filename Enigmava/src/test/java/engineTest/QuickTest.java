@@ -36,10 +36,33 @@ public class QuickTest {
 		
 		CryptAlgo algo = new CryptAlgo(k, rotList, ref, abc);
 		algo.initReflector();
-		algo.setInput("Hello World !");
+		//Hello World !
+		String chaine = new String("trek");
+		algo.setInput(chaine);
 		algo.encrypt();
-		System.out.println(algo.getOutput());
 		algo.nextStep();
+		algo.nextStep();
+		algo.nextStep();
+		algo.nextStep();
+		algo.nextStep();
+		algo.nextStep();
+		algo.nextStep();
+		algo.nextStep();
+		algo.nextStep();
+		algo.nextStep();
+		algo.nextStep();
+		algo.nextStep();
+		algo.nextStep();
+		algo.nextStep();
+		algo.nextStep();
+		
+		System.out.println(algo.getOutput());
+		/*for(int i = 0; i<chaine.length();i++) {
+			algo.nextStep();
+			System.out.println(algo.getOutput());
+
+		}*/
+
 		
 		//System.out.println(s);
 		
