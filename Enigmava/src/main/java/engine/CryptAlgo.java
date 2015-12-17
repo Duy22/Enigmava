@@ -11,6 +11,8 @@ public class CryptAlgo {
 	private ArrayList<Rotor> rotorList;
 	private Alphabet alphabet;
 	private int position;
+	private String output;
+	private double rotorNum;
 	
 	public CryptAlgo(Key k, ArrayList<Rotor> rL, Reflector ref, Alphabet alpha){
 		super();
@@ -20,6 +22,8 @@ public class CryptAlgo {
 		this.rotorList = rL;
 		this.alphabet = alpha;
 		this.position = 0;
+		this.output = new String("");
+		this.rotorNum = 0;
 	}
 	
 	public void setKey(Key k){
@@ -44,6 +48,14 @@ public class CryptAlgo {
 	
 	public int getPosition() {
 		return this.position;
+	}
+	
+	public void setOutput(String str) {
+		this.output = str;
+	}
+	
+	public String getOutput() {
+		return this.output;
 	}
 	
 	public void initReflector(){
@@ -226,15 +238,13 @@ public class CryptAlgo {
 		this.rotorList.get(2).setLowerLane(25, -23);
 	}
 	
-	public String encrypt(){
+	public void encrypt(){
 		this.input = this.input.toLowerCase();
 		this.input = Normalizer.normalize(this.input, Normalizer.Form.NFKD);
-		char[] charList = this.input.toCharArray();
 		this.initRotor1();
 		this.initRotor2();
 		this.initRotor3();
 		this.initReflector();
-		double rotorNum = 0;
 		int init = 0;
 		Rotor rotInit;
 		
@@ -263,20 +273,16 @@ public class CryptAlgo {
 				}
 			}
 		}
-		nextStep(rotorNum, charList);
-		String output = new String(charList);
-		return output;
+		this.nextStep();
 	}
 	
-	public char nextStep(double rotorNum, char charList[]) {
-		int i = this.getPosition();
+	public void nextStep() {
 		int size = this.input.length();
-		char lettre = 0;
-		if(i<size) {
-			rotorNum = (Math.floor(i/25))%3;// used to determine which rotor will roll, given the key
-			int rotorInt = (int)rotorNum;
+		if(this.position<size) { //to check if the current position is still in the input string
+			this.rotorNum = (Math.floor(this.position/25))%3;// used to determine which rotor will roll, given the key
+			int rotorInt = (int)this.rotorNum;
 			for (int j=0;j<26;j++){ // for each letter of the alphabet
-				if (this.input.charAt(i)==this.alphabet.getLetter(j)){// compares the input character to the letter of the alphabet
+				if (this.input.charAt(this.position)==this.alphabet.getLetter(j)){// compares the input character to the letter of the alphabet
 					int k,l,m,n,o,p,q;
 					k = this.rotorList.get(0).getLowerLaneValue(j); //beginning of the encryption
 					l = this.rotorList.get(1).getLowerLaneValue(((j+k)%26+26)%26);
@@ -285,7 +291,8 @@ public class CryptAlgo {
 					o = this.rotorList.get(2).getUpperLaneValue(((j+k+l+m+n)%26+26)%26);
 					p = this.rotorList.get(1).getUpperLaneValue(((j+k+l+m+n+o)%26+26)%26);
 					q = this.rotorList.get(0).getUpperLaneValue(((j+k+l+m+n+o+p)%26+26)%26);
-					lettre = this.alphabet.getLetter(((j+k+l+m+n+o+p+q)%26+26)%26); // end of the encryption
+					this.setOutput(this.output+= this.alphabet.getLetter(((j+k+l+m+n+o+p+q)%26+26)%26)); // end of the encryption
+					/*and also add the encrypted character to the output string*/
 					if (this.key.getSequenceOrientation().get(rotorInt) == true){ // moves the rotor to the left if true
 						this.key.getSequenceRotor().get(rotorInt).moveLeft();
 						}
@@ -294,12 +301,11 @@ public class CryptAlgo {
 					}
 				}
 			}
-			i++;
+			this.setPosition(this.position++); //increment the postion int to the next iteration
 		}
 		else {
-			System.out.println("Next step cannot be processed because the decryption or encryption is complete");
+			System.out.println("Next step cannot be processed because the decryption or encryption is complete"); //to implement lately a message
 		}
-		return lettre;
 	}
 	
 }

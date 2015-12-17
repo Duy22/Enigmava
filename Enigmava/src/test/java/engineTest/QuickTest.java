@@ -37,11 +37,14 @@ public class QuickTest {
 		CryptAlgo algo = new CryptAlgo(k, rotList, ref, abc);
 		algo.initReflector();
 		algo.setInput("Hello World !");
-		String s = algo.encrypt();
-		System.out.println(s);
+		algo.encrypt();
+		System.out.println(algo.getOutput());
+		algo.nextStep();
 		
-		algo.setInput("ljcgi pkxps !");
-		String x = algo.encrypt();
+		//System.out.println(s);
+		
+		//algo.setInput("ljcgi pkxps !");
+		/*String x = algo.encrypt();
 		System.out.println(x);
 		
 		String l = "Une fois une lettre est encryptÃ©e, un des trois rotors va tourner dâ€™un cran (dÃ©calage"
@@ -64,7 +67,7 @@ public class QuickTest {
 				+ "idxq qsjwwq nhctihwwÌ€hv mz kh uzaapxiÌ€uq ojjwb gÌ€ iffhebq tz ymba"
 				+ " rqdvnpt aojbtvpnly.";
 		algo.setInput(h);
-		System.out.println(algo.encrypt());
+		System.out.println(algo.encrypt());*/
 	}
 
 }
