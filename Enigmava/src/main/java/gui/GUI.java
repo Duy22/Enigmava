@@ -24,6 +24,8 @@ import javax.swing.JTree;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GUI extends JFrame {
 
@@ -58,11 +60,11 @@ public class GUI extends JFrame {
 	private JComboBox comboBox_3;
 	private JComboBox comboBox_4;
 	private JComboBox comboBox_5;
-	private JTextPane textPane;
+	private JTextPane txtpnEntrezLaChaine;
 	private JTextPane textPane_1;
 	private JButton encrypt;
-	private JButton btnNewButton_2;
-	private JButton btnNewButton_3;
+	private JButton nextStepButton;
+	private JButton decrypt;
 
 	/**
 	 * Launch the application.
@@ -413,15 +415,17 @@ public class GUI extends JFrame {
 		gbl_panel_1.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
 		panel_1.setLayout(gbl_panel_1);
 
-		textPane = new JTextPane();
-		textPane.setFont(new Font("Dialog", Font.PLAIN, 10));
-		GridBagConstraints gbc_textPane = new GridBagConstraints();
-		gbc_textPane.weightx = 1.0;
-		gbc_textPane.weighty = 1.0;
-		gbc_textPane.fill = GridBagConstraints.BOTH;
-		gbc_textPane.gridx = 0;
-		gbc_textPane.gridy = 0;
-		panel_1.add(textPane, gbc_textPane);
+		txtpnEntrezLaChaine = new JTextPane();
+		txtpnEntrezLaChaine.setFont(new Font("Dialog", Font.PLAIN, 10));
+		String chaine = txtpnEntrezLaChaine.getText();
+		GridBagConstraints gbc_txtpnEntrezLaChaine = new GridBagConstraints();
+		gbc_txtpnEntrezLaChaine.weightx = 1.0;
+		gbc_txtpnEntrezLaChaine.weighty = 1.0;
+		gbc_txtpnEntrezLaChaine.fill = GridBagConstraints.BOTH;
+		gbc_txtpnEntrezLaChaine.gridx = 0;
+		gbc_txtpnEntrezLaChaine.gridy = 0;
+		panel_1.add(txtpnEntrezLaChaine, gbc_txtpnEntrezLaChaine);
+		this.
 
 		panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
@@ -439,26 +443,43 @@ public class GUI extends JFrame {
 		panel_2.setLayout(gbl_panel_2);
 
 		encrypt = new JButton("Encrypt");
+		encrypt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		GridBagConstraints gbc_encrypt = new GridBagConstraints();
 		gbc_encrypt.insets = new Insets(0, 0, 0, 5);
 		gbc_encrypt.gridx = 1;
 		gbc_encrypt.gridy = 0;
 		panel_2.add(encrypt, gbc_encrypt);
 
-		btnNewButton_2 = new JButton("Next Step");
-		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
-		gbc_btnNewButton_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNewButton_2.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton_2.gridx = 3;
-		gbc_btnNewButton_2.gridy = 0;
-		panel_2.add(btnNewButton_2, gbc_btnNewButton_2);
+		nextStepButton = new JButton("Next Step");
+		nextStepButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		GridBagConstraints gbc_nextStepButton = new GridBagConstraints();
+		gbc_nextStepButton.fill = GridBagConstraints.HORIZONTAL;
+		gbc_nextStepButton.insets = new Insets(0, 0, 0, 5);
+		gbc_nextStepButton.gridx = 3;
+		gbc_nextStepButton.gridy = 0;
+		panel_2.add(nextStepButton, gbc_nextStepButton);
+		
+		
 
-		btnNewButton_3 = new JButton("Decrypt");
-		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
-		gbc_btnNewButton_3.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNewButton_3.gridx = 5;
-		gbc_btnNewButton_3.gridy = 0;
-		panel_2.add(btnNewButton_3, gbc_btnNewButton_3);
+		decrypt = new JButton("Decrypt");
+		decrypt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		GridBagConstraints gbc_decrypt = new GridBagConstraints();
+		gbc_decrypt.fill = GridBagConstraints.HORIZONTAL;
+		gbc_decrypt.gridx = 5;
+		gbc_decrypt.gridy = 0;
+		panel_2.add(decrypt, gbc_decrypt);
 
 		panel_3 = new JPanel();
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
