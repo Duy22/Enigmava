@@ -27,7 +27,10 @@ public class CryptAlgo {
 		this.output = new String("");
 		this.rotorNum = 0;
 		this.algoIndex = 0;
-
+		this.initRotor1();
+		this.initRotor2();
+		this.initRotor3();
+		this.initReflector();
 	}
 
 	public void setKey(Key k) {

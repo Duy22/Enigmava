@@ -46,6 +46,10 @@ public class QuickTest {
 		System.out.println(algo.getOutput());
 		
 		GUI interfaceGraphique = new GUI();
+		for(int i=0; i<26;i++) {
+			//interfaceGraphique.getTableReflector().setValueAt(ref.getNum(i), 0, i);
+		}
+		interfaceGraphique.setVisible(true);
 		/*for(int i = 0; i<chaine.length();i++) {
 			algo.nextStep();
 			System.out.println(algo.getOutput());
