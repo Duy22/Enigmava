@@ -82,7 +82,7 @@ public class GUI extends JFrame {
 		setTitle("Enigmava");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 550, 600);
+		setBounds(0, 0, 1100, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -95,16 +95,16 @@ public class GUI extends JFrame {
 
 		JPanel upperPanel = new JPanel();
 		GridBagConstraints gbc_upperPanel = new GridBagConstraints();
-		gbc_upperPanel.insets = new Insets(0, 0, 5, 5);
-		gbc_upperPanel.fill = GridBagConstraints.VERTICAL;
+		gbc_upperPanel.insets = new Insets(10, 10, 5, 5);
+		gbc_upperPanel.fill = GridBagConstraints.BOTH;
 		gbc_upperPanel.gridx = 0;
 		gbc_upperPanel.gridy = 0;
 		contentPane.add(upperPanel, gbc_upperPanel);
 		GridBagLayout gbl_upperPanel = new GridBagLayout();
-		gbl_upperPanel.columnWidths = new int[] { 0, 0 };
+		gbl_upperPanel.columnWidths = new int[] { 0, 0};
 		gbl_upperPanel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
-		gbl_upperPanel.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
-		gbl_upperPanel.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_upperPanel.columnWeights = new double[] { 1.0, 1.0 };
+		gbl_upperPanel.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 };
 		upperPanel.setLayout(gbl_upperPanel);
 
 		tableReflector = new JTable();
@@ -117,7 +117,9 @@ public class GUI extends JFrame {
 						"New column", "New column", "New column", "New column", "New column", "New column",
 						"New column", "New column" }));
 		GridBagConstraints gbc_tableReflector = new GridBagConstraints();
-		gbc_tableReflector.insets = new Insets(0, 0, 5, 0);
+		gbc_tableReflector.weightx = 1.0;
+		gbc_tableReflector.gridwidth = 2;
+		gbc_tableReflector.insets = new Insets(5, 0, 10, 0);
 		gbc_tableReflector.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tableReflector.gridx = 0;
 		gbc_tableReflector.gridy = 0;
@@ -136,6 +138,7 @@ public class GUI extends JFrame {
 						"New column", "New column", "New column", "New column", "New column", "New column",
 						"New column", "New column" }));
 		GridBagConstraints gbc_tableRotor3 = new GridBagConstraints();
+		gbc_tableRotor3.gridwidth = 2;
 		gbc_tableRotor3.insets = new Insets(0, 0, 5, 0);
 		gbc_tableRotor3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tableRotor3.gridx = 0;
@@ -155,6 +158,7 @@ public class GUI extends JFrame {
 						"New column", "New column", "New column", "New column", "New column", "New column",
 						"New column", "New column" }));
 		GridBagConstraints gbc_tableRotor2 = new GridBagConstraints();
+		gbc_tableRotor2.gridwidth = 2;
 		gbc_tableRotor2.insets = new Insets(0, 0, 5, 0);
 		gbc_tableRotor2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tableRotor2.gridx = 0;
@@ -174,6 +178,7 @@ public class GUI extends JFrame {
 						"New column", "New column", "New column", "New column", "New column", "New column",
 						"New column", "New column" }));
 		GridBagConstraints gbc_tableRotor1 = new GridBagConstraints();
+		gbc_tableRotor1.gridwidth = 2;
 		gbc_tableRotor1.insets = new Insets(0, 0, 5, 0);
 		gbc_tableRotor1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tableRotor1.gridx = 0;
@@ -190,6 +195,7 @@ public class GUI extends JFrame {
 						"New column", "New column", "New column", "New column", "New column", "New column",
 						"New column", "New column" }));
 		GridBagConstraints gbc_tableAlphabet = new GridBagConstraints();
+		gbc_tableAlphabet.gridwidth = 2;
 		gbc_tableAlphabet.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tableAlphabet.gridx = 0;
 		gbc_tableAlphabet.gridy = 4;
@@ -421,8 +427,7 @@ public class GUI extends JFrame {
 
 		panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-		gbc_panel_2.anchor = GridBagConstraints.NORTH;
-		gbc_panel_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_panel_2.fill = GridBagConstraints.BOTH;
 		gbc_panel_2.insets = new Insets(0, 0, 0, 5);
 		gbc_panel_2.gridx = 0;
 		gbc_panel_2.gridy = 4;
@@ -497,509 +502,508 @@ public class GUI extends JFrame {
 		gbc_textPane_1.gridy = 0;
 		panel_3.add(textPane_1, gbc_textPane_1);
 	}
-
-	/**
-	 * @return the contentPane
-	 */
-	public JPanel getContentPane() {
-		return contentPane;
-	}
-
-	/**
-	 * @param contentPane the contentPane to set
-	 */
-	public void setContentPane(JPanel contentPane) {
-		this.contentPane = contentPane;
-	}
-
+	
+//	/**
+//	 * @return the contentPane
+//	 */
+//	public JPanel getContentPane() {
+//		return contentPane;
+//	}
+//
+//	/**
+//	 * @param contentPane the contentPane to set
+//	 */
+//	public void setContentPane(JPanel contentPane) {
+//		this.contentPane = contentPane;
+//	}
+//
 	/**
 	 * @return the tableReflector
 	 */
 	public JTable getTableReflector() {
 		return tableReflector;
 	}
-
-	/**
-	 * @param tableReflector the tableReflector to set
-	 */
-	public void setTableReflector(JTable tableReflector) {
-		this.tableReflector = tableReflector;
-	}
-
-	/**
-	 * @return the tableRotor3
-	 */
-	public JTable getTableRotor3() {
-		return tableRotor3;
-	}
-
-	/**
-	 * @param tableRotor3 the tableRotor3 to set
-	 */
-	public void setTableRotor3(JTable tableRotor3) {
-		this.tableRotor3 = tableRotor3;
-	}
-
-	/**
-	 * @return the tableRotor2
-	 */
-	public JTable getTableRotor2() {
-		return tableRotor2;
-	}
-
-	/**
-	 * @param tableRotor2 the tableRotor2 to set
-	 */
-	public void setTableRotor2(JTable tableRotor2) {
-		this.tableRotor2 = tableRotor2;
-	}
-
-	/**
-	 * @return the tableRotor1
-	 */
-	public JTable getTableRotor1() {
-		return tableRotor1;
-	}
-
-	/**
-	 * @param tableRotor1 the tableRotor1 to set
-	 */
-	public void setTableRotor1(JTable tableRotor1) {
-		this.tableRotor1 = tableRotor1;
-	}
-
-	/**
-	 * @return the tableAlphabet
-	 */
-	public JTable getTableAlphabet() {
-		return tableAlphabet;
-	}
-
-	/**
-	 * @param tableAlphabet the tableAlphabet to set
-	 */
-	public void setTableAlphabet(JTable tableAlphabet) {
-		this.tableAlphabet = tableAlphabet;
-	}
-
-	/**
-	 * @return the panel
-	 */
-	public JPanel getPanel() {
-		return panel;
-	}
-
-	/**
-	 * @param panel the panel to set
-	 */
-	public void setPanel(JPanel panel) {
-		this.panel = panel;
-	}
-
-	/**
-	 * @return the lblReflector
-	 */
-	public JLabel getLblReflector() {
-		return lblReflector;
-	}
-
-	/**
-	 * @param lblReflector the lblReflector to set
-	 */
-	public void setLblReflector(JLabel lblReflector) {
-		this.lblReflector = lblReflector;
-	}
-
-	/**
-	 * @return the lblRotor
-	 */
-	public JLabel getLblRotor() {
-		return lblRotor;
-	}
-
-	/**
-	 * @param lblRotor the lblRotor to set
-	 */
-	public void setLblRotor(JLabel lblRotor) {
-		this.lblRotor = lblRotor;
-	}
-
-	/**
-	 * @return the lblRotor_1
-	 */
-	public JLabel getLblRotor_1() {
-		return lblRotor_1;
-	}
-
-	/**
-	 * @param lblRotor_1 the lblRotor_1 to set
-	 */
-	public void setLblRotor_1(JLabel lblRotor_1) {
-		this.lblRotor_1 = lblRotor_1;
-	}
-
-	/**
-	 * @return the lblRotor_2
-	 */
-	public JLabel getLblRotor_2() {
-		return lblRotor_2;
-	}
-
-	/**
-	 * @param lblRotor_2 the lblRotor_2 to set
-	 */
-	public void setLblRotor_2(JLabel lblRotor_2) {
-		this.lblRotor_2 = lblRotor_2;
-	}
-
-	/**
-	 * @return the panel_1
-	 */
-	public JPanel getPanel_1() {
-		return panel_1;
-	}
-
-	/**
-	 * @param panel_1 the panel_1 to set
-	 */
-	public void setPanel_1(JPanel panel_1) {
-		this.panel_1 = panel_1;
-	}
-
-	/**
-	 * @return the panel_2
-	 */
-	public JPanel getPanel_2() {
-		return panel_2;
-	}
-
-	/**
-	 * @param panel_2 the panel_2 to set
-	 */
-	public void setPanel_2(JPanel panel_2) {
-		this.panel_2 = panel_2;
-	}
-
-	/**
-	 * @return the panel_3
-	 */
-	public JPanel getPanel_3() {
-		return panel_3;
-	}
-
-	/**
-	 * @param panel_3 the panel_3 to set
-	 */
-	public void setPanel_3(JPanel panel_3) {
-		this.panel_3 = panel_3;
-	}
-
-	/**
-	 * @return the lblKey
-	 */
-	public JLabel getLblKey() {
-		return lblKey;
-	}
-
-	/**
-	 * @param lblKey the lblKey to set
-	 */
-	public void setLblKey(JLabel lblKey) {
-		this.lblKey = lblKey;
-	}
-
-	/**
-	 * @return the btnNewButton
-	 */
-	public JButton getBtnNewButton() {
-		return btnNewButton;
-	}
-
-	/**
-	 * @param btnNewButton the btnNewButton to set
-	 */
-	public void setBtnNewButton(JButton btnNewButton) {
-		this.btnNewButton = btnNewButton;
-	}
-
-	/**
-	 * @return the spinner_1
-	 */
-	public JSpinner getSpinner_1() {
-		return spinner_1;
-	}
-
-	/**
-	 * @param spinner_1 the spinner_1 to set
-	 */
-	public void setSpinner_1(JSpinner spinner_1) {
-		this.spinner_1 = spinner_1;
-	}
-
-	/**
-	 * @return the spinner_3
-	 */
-	public JSpinner getSpinner_3() {
-		return spinner_3;
-	}
-
-	/**
-	 * @param spinner_3 the spinner_3 to set
-	 */
-	public void setSpinner_3(JSpinner spinner_3) {
-		this.spinner_3 = spinner_3;
-	}
-
-	/**
-	 * @return the spinner_5
-	 */
-	public JSpinner getSpinner_5() {
-		return spinner_5;
-	}
-
-	/**
-	 * @param spinner_5 the spinner_5 to set
-	 */
-	public void setSpinner_5(JSpinner spinner_5) {
-		this.spinner_5 = spinner_5;
-	}
-
-	/**
-	 * @return the lblFirstRotor
-	 */
-	public JLabel getLblFirstRotor() {
-		return lblFirstRotor;
-	}
-
-	/**
-	 * @param lblFirstRotor the lblFirstRotor to set
-	 */
-	public void setLblFirstRotor(JLabel lblFirstRotor) {
-		this.lblFirstRotor = lblFirstRotor;
-	}
-
-	/**
-	 * @return the lblSecondRotor
-	 */
-	public JLabel getLblSecondRotor() {
-		return lblSecondRotor;
-	}
-
-	/**
-	 * @param lblSecondRotor the lblSecondRotor to set
-	 */
-	public void setLblSecondRotor(JLabel lblSecondRotor) {
-		this.lblSecondRotor = lblSecondRotor;
-	}
-
-	/**
-	 * @return the lblThirdRotor
-	 */
-	public JLabel getLblThirdRotor() {
-		return lblThirdRotor;
-	}
-
-	/**
-	 * @param lblThirdRotor the lblThirdRotor to set
-	 */
-	public void setLblThirdRotor(JLabel lblThirdRotor) {
-		this.lblThirdRotor = lblThirdRotor;
-	}
-
-	/**
-	 * @return the lblRotorNumber
-	 */
-	public JLabel getLblRotorNumber() {
-		return lblRotorNumber;
-	}
-
-	/**
-	 * @param lblRotorNumber the lblRotorNumber to set
-	 */
-	public void setLblRotorNumber(JLabel lblRotorNumber) {
-		this.lblRotorNumber = lblRotorNumber;
-	}
-
-	/**
-	 * @return the lblLeftOrRight
-	 */
-	public JLabel getLblLeftOrRight() {
-		return lblLeftOrRight;
-	}
-
-	/**
-	 * @param lblLeftOrRight the lblLeftOrRight to set
-	 */
-	public void setLblLeftOrRight(JLabel lblLeftOrRight) {
-		this.lblLeftOrRight = lblLeftOrRight;
-	}
-
-	/**
-	 * @return the lblInitialRotations
-	 */
-	public JLabel getLblInitialRotations() {
-		return lblInitialRotations;
-	}
-
-	/**
-	 * @param lblInitialRotations the lblInitialRotations to set
-	 */
-	public void setLblInitialRotations(JLabel lblInitialRotations) {
-		this.lblInitialRotations = lblInitialRotations;
-	}
-
-	/**
-	 * @return the comboBox
-	 */
-	public JComboBox getComboBox() {
-		return comboBox;
-	}
-
-	/**
-	 * @param comboBox the comboBox to set
-	 */
-	public void setComboBox(JComboBox comboBox) {
-		this.comboBox = comboBox;
-	}
-
-	/**
-	 * @return the comboBox_1
-	 */
-	public JComboBox getComboBox_1() {
-		return comboBox_1;
-	}
-
-	/**
-	 * @param comboBox_1 the comboBox_1 to set
-	 */
-	public void setComboBox_1(JComboBox comboBox_1) {
-		this.comboBox_1 = comboBox_1;
-	}
-
-	/**
-	 * @return the comboBox_2
-	 */
-	public JComboBox getComboBox_2() {
-		return comboBox_2;
-	}
-
-	/**
-	 * @param comboBox_2 the comboBox_2 to set
-	 */
-	public void setComboBox_2(JComboBox comboBox_2) {
-		this.comboBox_2 = comboBox_2;
-	}
-
-	/**
-	 * @return the comboBox_3
-	 */
-	public JComboBox getComboBox_3() {
-		return comboBox_3;
-	}
-
-	/**
-	 * @param comboBox_3 the comboBox_3 to set
-	 */
-	public void setComboBox_3(JComboBox comboBox_3) {
-		this.comboBox_3 = comboBox_3;
-	}
-
-	/**
-	 * @return the comboBox_4
-	 */
-	public JComboBox getComboBox_4() {
-		return comboBox_4;
-	}
-
-	/**
-	 * @param comboBox_4 the comboBox_4 to set
-	 */
-	public void setComboBox_4(JComboBox comboBox_4) {
-		this.comboBox_4 = comboBox_4;
-	}
-
-	/**
-	 * @return the comboBox_5
-	 */
-	public JComboBox getComboBox_5() {
-		return comboBox_5;
-	}
-
-	/**
-	 * @param comboBox_5 the comboBox_5 to set
-	 */
-	public void setComboBox_5(JComboBox comboBox_5) {
-		this.comboBox_5 = comboBox_5;
-	}
-
-	/**
-	 * @return the txtpnEntrezLaChaine
-	 */
-	public JTextPane getTxtpnEntrezLaChaine() {
-		return txtpnEntrezLaChaine;
-	}
-
-	/**
-	 * @param txtpnEntrezLaChaine the txtpnEntrezLaChaine to set
-	 */
-	public void setTxtpnEntrezLaChaine(JTextPane txtpnEntrezLaChaine) {
-		this.txtpnEntrezLaChaine = txtpnEntrezLaChaine;
-	}
-
-	/**
-	 * @return the textPane_1
-	 */
-	public JTextPane getTextPane_1() {
-		return textPane_1;
-	}
-
-	/**
-	 * @param textPane_1 the textPane_1 to set
-	 */
-	public void setTextPane_1(JTextPane textPane_1) {
-		this.textPane_1 = textPane_1;
-	}
-
-	/**
-	 * @return the encrypt
-	 */
-	public JButton getEncrypt() {
-		return encrypt;
-	}
-
-	/**
-	 * @param encrypt the encrypt to set
-	 */
-	public void setEncrypt(JButton encrypt) {
-		this.encrypt = encrypt;
-	}
-
-	/**
-	 * @return the nextStepButton
-	 */
-	public JButton getNextStepButton() {
-		return nextStepButton;
-	}
-
-	/**
-	 * @param nextStepButton the nextStepButton to set
-	 */
-	public void setNextStepButton(JButton nextStepButton) {
-		this.nextStepButton = nextStepButton;
-	}
-
-	/**
-	 * @return the decrypt
-	 */
-	public JButton getDecrypt() {
-		return decrypt;
-	}
-
-	/**
-	 * @param decrypt the decrypt to set
-	 */
-	public void setDecrypt(JButton decrypt) {
-		this.decrypt = decrypt;
-	}
-
+//
+//	/**
+//	 * @param tableReflector the tableReflector to set
+//	 */
+//	public void setTableReflector(JTable tableReflector) {
+//		this.tableReflector = tableReflector;
+//	}
+//
+//	/**
+//	 * @return the tableRotor3
+//	 */
+//	public JTable getTableRotor3() {
+//		return tableRotor3;
+//	}
+//
+//	/**
+//	 * @param tableRotor3 the tableRotor3 to set
+//	 */
+//	public void setTableRotor3(JTable tableRotor3) {
+//		this.tableRotor3 = tableRotor3;
+//	}
+//
+//	/**
+//	 * @return the tableRotor2
+//	 */
+//	public JTable getTableRotor2() {
+//		return tableRotor2;
+//	}
+//
+//	/**
+//	 * @param tableRotor2 the tableRotor2 to set
+//	 */
+//	public void setTableRotor2(JTable tableRotor2) {
+//		this.tableRotor2 = tableRotor2;
+//	}
+//
+//	/**
+//	 * @return the tableRotor1
+//	 */
+//	public JTable getTableRotor1() {
+//		return tableRotor1;
+//	}
+//
+//	/**
+//	 * @param tableRotor1 the tableRotor1 to set
+//	 */
+//	public void setTableRotor1(JTable tableRotor1) {
+//		this.tableRotor1 = tableRotor1;
+//	}
+//
+//	/**
+//	 * @return the tableAlphabet
+//	 */
+//	public JTable getTableAlphabet() {
+//		return tableAlphabet;
+//	}
+//
+//	/**
+//	 * @param tableAlphabet the tableAlphabet to set
+//	 */
+//	public void setTableAlphabet(JTable tableAlphabet) {
+//		this.tableAlphabet = tableAlphabet;
+//	}
+//
+//	/**
+//	 * @return the panel
+//	 */
+//	public JPanel getPanel() {
+//		return panel;
+//	}
+//
+//	/**
+//	 * @param panel the panel to set
+//	 */
+//	public void setPanel(JPanel panel) {
+//		this.panel = panel;
+//	}
+//
+//	/**
+//	 * @return the lblReflector
+//	 */
+//	public JLabel getLblReflector() {
+//		return lblReflector;
+//	}
+//
+//	/**
+//	 * @param lblReflector the lblReflector to set
+//	 */
+//	public void setLblReflector(JLabel lblReflector) {
+//		this.lblReflector = lblReflector;
+//	}
+//
+//	/**
+//	 * @return the lblRotor
+//	 */
+//	public JLabel getLblRotor() {
+//		return lblRotor;
+//	}
+//
+//	/**
+//	 * @param lblRotor the lblRotor to set
+//	 */
+//	public void setLblRotor(JLabel lblRotor) {
+//		this.lblRotor = lblRotor;
+//	}
+//
+//	/**
+//	 * @return the lblRotor_1
+//	 */
+//	public JLabel getLblRotor_1() {
+//		return lblRotor_1;
+//	}
+//
+//	/**
+//	 * @param lblRotor_1 the lblRotor_1 to set
+//	 */
+//	public void setLblRotor_1(JLabel lblRotor_1) {
+//		this.lblRotor_1 = lblRotor_1;
+//	}
+//
+//	/**
+//	 * @return the lblRotor_2
+//	 */
+//	public JLabel getLblRotor_2() {
+//		return lblRotor_2;
+//	}
+//
+//	/**
+//	 * @param lblRotor_2 the lblRotor_2 to set
+//	 */
+//	public void setLblRotor_2(JLabel lblRotor_2) {
+//		this.lblRotor_2 = lblRotor_2;
+//	}
+//
+//	/**
+//	 * @return the panel_1
+//	 */
+//	public JPanel getPanel_1() {
+//		return panel_1;
+//	}
+//
+//	/**
+//	 * @param panel_1 the panel_1 to set
+//	 */
+//	public void setPanel_1(JPanel panel_1) {
+//		this.panel_1 = panel_1;
+//	}
+//
+//	/**
+//	 * @return the panel_2
+//	 */
+//	public JPanel getPanel_2() {
+//		return panel_2;
+//	}
+//
+//	/**
+//	 * @param panel_2 the panel_2 to set
+//	 */
+//	public void setPanel_2(JPanel panel_2) {
+//		this.panel_2 = panel_2;
+//	}
+//
+//	/**
+//	 * @return the panel_3
+//	 */
+//	public JPanel getPanel_3() {
+//		return panel_3;
+//	}
+//
+//	/**
+//	 * @param panel_3 the panel_3 to set
+//	 */
+//	public void setPanel_3(JPanel panel_3) {
+//		this.panel_3 = panel_3;
+//	}
+//
+//	/**
+//	 * @return the lblKey
+//	 */
+//	public JLabel getLblKey() {
+//		return lblKey;
+//	}
+//
+//	/**
+//	 * @param lblKey the lblKey to set
+//	 */
+//	public void setLblKey(JLabel lblKey) {
+//		this.lblKey = lblKey;
+//	}
+//
+//	/**
+//	 * @return the btnNewButton
+//	 */
+//	public JButton getBtnNewButton() {
+//		return btnNewButton;
+//	}
+//
+//	/**
+//	 * @param btnNewButton the btnNewButton to set
+//	 */
+//	public void setBtnNewButton(JButton btnNewButton) {
+//		this.btnNewButton = btnNewButton;
+//	}
+//
+//	/**
+//	 * @return the spinner_1
+//	 */
+//	public JSpinner getSpinner_1() {
+//		return spinner_1;
+//	}
+//
+//	/**
+//	 * @param spinner_1 the spinner_1 to set
+//	 */
+//	public void setSpinner_1(JSpinner spinner_1) {
+//		this.spinner_1 = spinner_1;
+//	}
+//
+//	/**
+//	 * @return the spinner_3
+//	 */
+//	public JSpinner getSpinner_3() {
+//		return spinner_3;
+//	}
+//
+//	/**
+//	 * @param spinner_3 the spinner_3 to set
+//	 */
+//	public void setSpinner_3(JSpinner spinner_3) {
+//		this.spinner_3 = spinner_3;
+//	}
+//
+//	/**
+//	 * @return the spinner_5
+//	 */
+//	public JSpinner getSpinner_5() {
+//		return spinner_5;
+//	}
+//
+//	/**
+//	 * @param spinner_5 the spinner_5 to set
+//	 */
+//	public void setSpinner_5(JSpinner spinner_5) {
+//		this.spinner_5 = spinner_5;
+//	}
+//
+//	/**
+//	 * @return the lblFirstRotor
+//	 */
+//	public JLabel getLblFirstRotor() {
+//		return lblFirstRotor;
+//	}
+//
+//	/**
+//	 * @param lblFirstRotor the lblFirstRotor to set
+//	 */
+//	public void setLblFirstRotor(JLabel lblFirstRotor) {
+//		this.lblFirstRotor = lblFirstRotor;
+//	}
+//
+//	/**
+//	 * @return the lblSecondRotor
+//	 */
+//	public JLabel getLblSecondRotor() {
+//		return lblSecondRotor;
+//	}
+//
+//	/**
+//	 * @param lblSecondRotor the lblSecondRotor to set
+//	 */
+//	public void setLblSecondRotor(JLabel lblSecondRotor) {
+//		this.lblSecondRotor = lblSecondRotor;
+//	}
+//
+//	/**
+//	 * @return the lblThirdRotor
+//	 */
+//	public JLabel getLblThirdRotor() {
+//		return lblThirdRotor;
+//	}
+//
+//	/**
+//	 * @param lblThirdRotor the lblThirdRotor to set
+//	 */
+//	public void setLblThirdRotor(JLabel lblThirdRotor) {
+//		this.lblThirdRotor = lblThirdRotor;
+//	}
+//
+//	/**
+//	 * @return the lblRotorNumber
+//	 */
+//	public JLabel getLblRotorNumber() {
+//		return lblRotorNumber;
+//	}
+//
+//	/**
+//	 * @param lblRotorNumber the lblRotorNumber to set
+//	 */
+//	public void setLblRotorNumber(JLabel lblRotorNumber) {
+//		this.lblRotorNumber = lblRotorNumber;
+//	}
+//
+//	/**
+//	 * @return the lblLeftOrRight
+//	 */
+//	public JLabel getLblLeftOrRight() {
+//		return lblLeftOrRight;
+//	}
+//
+//	/**
+//	 * @param lblLeftOrRight the lblLeftOrRight to set
+//	 */
+//	public void setLblLeftOrRight(JLabel lblLeftOrRight) {
+//		this.lblLeftOrRight = lblLeftOrRight;
+//	}
+//
+//	/**
+//	 * @return the lblInitialRotations
+//	 */
+//	public JLabel getLblInitialRotations() {
+//		return lblInitialRotations;
+//	}
+//
+//	/**
+//	 * @param lblInitialRotations the lblInitialRotations to set
+//	 */
+//	public void setLblInitialRotations(JLabel lblInitialRotations) {
+//		this.lblInitialRotations = lblInitialRotations;
+//	}
+//
+//	/**
+//	 * @return the comboBox
+//	 */
+//	public JComboBox getComboBox() {
+//		return comboBox;
+//	}
+//
+//	/**
+//	 * @param comboBox the comboBox to set
+//	 */
+//	public void setComboBox(JComboBox comboBox) {
+//		this.comboBox = comboBox;
+//	}
+//
+//	/**
+//	 * @return the comboBox_1
+//	 */
+//	public JComboBox getComboBox_1() {
+//		return comboBox_1;
+//	}
+//
+//	/**
+//	 * @param comboBox_1 the comboBox_1 to set
+//	 */
+//	public void setComboBox_1(JComboBox comboBox_1) {
+//		this.comboBox_1 = comboBox_1;
+//	}
+//
+//	/**
+//	 * @return the comboBox_2
+//	 */
+//	public JComboBox getComboBox_2() {
+//		return comboBox_2;
+//	}
+//
+//	/**
+//	 * @param comboBox_2 the comboBox_2 to set
+//	 */
+//	public void setComboBox_2(JComboBox comboBox_2) {
+//		this.comboBox_2 = comboBox_2;
+//	}
+//
+//	/**
+//	 * @return the comboBox_3
+//	 */
+//	public JComboBox getComboBox_3() {
+//		return comboBox_3;
+//	}
+//
+//	/**
+//	 * @param comboBox_3 the comboBox_3 to set
+//	 */
+//	public void setComboBox_3(JComboBox comboBox_3) {
+//		this.comboBox_3 = comboBox_3;
+//	}
+//
+//	/**
+//	 * @return the comboBox_4
+//	 */
+//	public JComboBox getComboBox_4() {
+//		return comboBox_4;
+//	}
+//
+//	/**
+//	 * @param comboBox_4 the comboBox_4 to set
+//	 */
+//	public void setComboBox_4(JComboBox comboBox_4) {
+//		this.comboBox_4 = comboBox_4;
+//	}
+//
+//	/**
+//	 * @return the comboBox_5
+//	 */
+//	public JComboBox getComboBox_5() {
+//		return comboBox_5;
+//	}
+//
+//	/**
+//	 * @param comboBox_5 the comboBox_5 to set
+//	 */
+//	public void setComboBox_5(JComboBox comboBox_5) {
+//		this.comboBox_5 = comboBox_5;
+//	}
+//
+//	/**
+//	 * @return the txtpnEntrezLaChaine
+//	 */
+//	public JTextPane getTxtpnEntrezLaChaine() {
+//		return txtpnEntrezLaChaine;
+//	}
+//
+//	/**
+//	 * @param txtpnEntrezLaChaine the txtpnEntrezLaChaine to set
+//	 */
+//	public void setTxtpnEntrezLaChaine(JTextPane txtpnEntrezLaChaine) {
+//		this.txtpnEntrezLaChaine = txtpnEntrezLaChaine;
+//	}
+//
+//	/**
+//	 * @return the textPane_1
+//	 */
+//	public JTextPane getTextPane_1() {
+//		return textPane_1;
+//	}
+//
+//	/**
+//	 * @param textPane_1 the textPane_1 to set
+//	 */
+//	public void setTextPane_1(JTextPane textPane_1) {
+//		this.textPane_1 = textPane_1;
+//	}
+//
+//	/**
+//	 * @return the encrypt
+//	 */
+//	public JButton getEncrypt() {
+//		return encrypt;
+//	}
+//
+//	/**
+//	 * @param encrypt the encrypt to set
+//	 */
+//	public void setEncrypt(JButton encrypt) {
+//		this.encrypt = encrypt;
+//	}
+//
+//	/**
+//	 * @return the nextStepButton
+//	 */
+//	public JButton getNextStepButton() {
+//		return nextStepButton;
+//	}
+//
+//	/**
+//	 * @param nextStepButton the nextStepButton to set
+//	 */
+//	public void setNextStepButton(JButton nextStepButton) {
+//		this.nextStepButton = nextStepButton;
+//	}
+//
+//	/**
+//	 * @return the decrypt
+//	 */
+//	public JButton getDecrypt() {
+//		return decrypt;
+//	}
+//
+//	/**
+//	 * @param decrypt the decrypt to set
+//	 */
+//	public void setDecrypt(JButton decrypt) {
+//		this.decrypt = decrypt;
+//	}
 }

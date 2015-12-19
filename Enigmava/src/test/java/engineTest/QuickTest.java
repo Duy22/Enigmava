@@ -47,7 +47,7 @@ public class QuickTest {
 		
 		GUI interfaceGraphique = new GUI();
 		for(int i=0; i<26;i++) {
-			//interfaceGraphique.getTableReflector().setValueAt(ref.getNum(i), 0, i);
+			interfaceGraphique.getTableReflector().setValueAt(ref.getNum(i), 0, i);
 		}
 		interfaceGraphique.setVisible(true);
 		/*for(int i = 0; i<chaine.length();i++) {
