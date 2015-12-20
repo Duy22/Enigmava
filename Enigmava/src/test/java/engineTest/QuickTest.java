@@ -36,18 +36,17 @@ public class QuickTest {
 		
 		
 		CryptAlgo algo = new CryptAlgo(k, rotList, ref, abc);
-		algo.initReflector();
-		//Hello World !
-		String chaine = new String("Hello World !");
-		algo.setInput(chaine);
-		algo.encrypt();
-		algo.nextStep();
-		algo.nextStep();
-		System.out.println(algo.getOutput());
-		
+		algo.initReflector();		
 		GUI interfaceGraphique = new GUI();
 		for(int i=0; i<26;i++) {
 			interfaceGraphique.getTableReflector().setValueAt(ref.getNum(i), 0, i);
+			interfaceGraphique.getTableRotor3().setValueAt(rot3.getUpperLaneValue(i), 0, i);
+			interfaceGraphique.getTableRotor3().setValueAt(rot3.getLowerLaneValue(i), 1, i);
+			interfaceGraphique.getTableRotor2().setValueAt(rot2.getUpperLaneValue(i), 0, i);
+			interfaceGraphique.getTableRotor2().setValueAt(rot2.getLowerLaneValue(i), 1, i);
+			interfaceGraphique.getTableRotor1().setValueAt(rot1.getUpperLaneValue(i), 0, i);
+			interfaceGraphique.getTableRotor1().setValueAt(rot1.getLowerLaneValue(i), 1, i);
+			interfaceGraphique.getTableAlphabet().setValueAt(abc.getLetter(i), 0, i);
 		}
 		interfaceGraphique.setVisible(true);
 		/*for(int i = 0; i<chaine.length();i++) {

@@ -355,7 +355,7 @@ public class CryptAlgo {
 			}
 			String s = new String (charList);
 			this.setOutput(s);
-			this.position++; // increment the postion int
+			this.position++; // increment the position int
 												// to the next iteration
 
 		} else {

@@ -531,41 +531,41 @@ public class GUI extends JFrame {
 //		this.tableReflector = tableReflector;
 //	}
 //
-//	/**
-//	 * @return the tableRotor3
-//	 */
-//	public JTable getTableRotor3() {
-//		return tableRotor3;
-//	}
-//
+	/**
+	 * @return the tableRotor3
+	 */
+	public JTable getTableRotor3() {
+		return tableRotor3;
+	}
+
 //	/**
 //	 * @param tableRotor3 the tableRotor3 to set
 //	 */
 //	public void setTableRotor3(JTable tableRotor3) {
 //		this.tableRotor3 = tableRotor3;
 //	}
-//
-//	/**
-//	 * @return the tableRotor2
-//	 */
-//	public JTable getTableRotor2() {
-//		return tableRotor2;
-//	}
-//
+
+	/**
+	 * @return the tableRotor2
+	 */
+	public JTable getTableRotor2() {
+		return tableRotor2;
+	}
+
 //	/**
 //	 * @param tableRotor2 the tableRotor2 to set
 //	 */
 //	public void setTableRotor2(JTable tableRotor2) {
 //		this.tableRotor2 = tableRotor2;
 //	}
-//
-//	/**
-//	 * @return the tableRotor1
-//	 */
-//	public JTable getTableRotor1() {
-//		return tableRotor1;
-//	}
-//
+
+	/**
+	 * @return the tableRotor1
+	 */
+	public JTable getTableRotor1() {
+		return tableRotor1;
+	}
+
 //	/**
 //	 * @param tableRotor1 the tableRotor1 to set
 //	 */
@@ -573,12 +573,12 @@ public class GUI extends JFrame {
 //		this.tableRotor1 = tableRotor1;
 //	}
 //
-//	/**
-//	 * @return the tableAlphabet
-//	 */
-//	public JTable getTableAlphabet() {
-//		return tableAlphabet;
-//	}
+	/**
+	 * @return the tableAlphabet
+	 */
+	public JTable getTableAlphabet() {
+		return tableAlphabet;
+	}
 //
 //	/**
 //	 * @param tableAlphabet the tableAlphabet to set
