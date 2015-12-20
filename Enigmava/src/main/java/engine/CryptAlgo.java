@@ -15,6 +15,7 @@ public class CryptAlgo {
 	private double rotorNum;
 	private char[] charList;
 	private int algoIndex;
+	private int k, l, m, n, o, p, q;
 
 	public CryptAlgo(Key k, ArrayList<Rotor> rL, Reflector ref, Alphabet alpha) {
 		super();
@@ -31,6 +32,62 @@ public class CryptAlgo {
 		this.initRotor2();
 		this.initRotor3();
 		this.initReflector();
+		this.k = 0;
+		this.l = 0;
+		this.m = 0;
+		this.n = 0;
+		this.o = 0;
+		this.p = 0;
+		this.q = 0;
+	}
+
+	/**
+	 * @return the k
+	 */
+	public int getK() {
+		return k;
+	}
+
+	/**
+	 * @return the l
+	 */
+	public int getL() {
+		return l;
+	}
+
+	/**
+	 * @return the m
+	 */
+	public int getM() {
+		return m;
+	}
+
+	/**
+	 * @return the n
+	 */
+	public int getN() {
+		return n;
+	}
+
+	/**
+	 * @return the o
+	 */
+	public int getO() {
+		return o;
+	}
+
+	/**
+	 * @return the p
+	 */
+	public int getP() {
+		return p;
+	}
+
+	/**
+	 * @return the q
+	 */
+	public int getQ() {
+		return q;
 	}
 
 	public void setKey(Key k) {
@@ -313,7 +370,7 @@ public class CryptAlgo {
 																						// of
 																						// the
 																						// alphabet
-					int k, l, m, n, o, p, q;
+					
 					k = this.rotorList.get(0).getLowerLaneValue(j); // beginning
 																	// of the
 																	// encryption

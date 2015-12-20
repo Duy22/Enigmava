@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -14,9 +15,12 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,7 +29,7 @@ import engine.CryptAlgo;
 import engine.Key;
 import engine.Reflector;
 import engine.Rotor;
-import javax.swing.SpinnerNumberModel;
+import javax.swing.DropMode;
 
 public class GUI extends JFrame{
 
@@ -60,7 +64,9 @@ public class GUI extends JFrame{
 	private JComboBox keySecondRotorNumber;
 	private JComboBox keyThirdRotorNumber;
 	private JTextPane encryptPane;
+	private JScrollPane encryptScrollPane;
 	private JTextPane decryptPane;
+	private JScrollPane decryptScrollPane;
 	private JButton encryptButton;
 	private JButton nextStepButton;
 	private JButton decryptButton;
@@ -74,7 +80,9 @@ public class GUI extends JFrame{
 	private ArrayList<Rotor> rotList;
 	private CryptAlgo algo;
 	private boolean encryptBoolean;
-	
+	private CustomTableCellRenderer cellRend;
+	private JLabel lblTextToEncrypt;
+	private JLabel lblTextToDecrypt;
 	
 
 	/**
@@ -100,6 +108,7 @@ public class GUI extends JFrame{
 		rotList.add(1, rot2);
 		rotList.add(2, rot3);
 		algo = new CryptAlgo(k, rotList, ref, abc);
+		cellRend = new CustomTableCellRenderer();
 		algo.initReflector();
 		
 		setTitle("Enigmava");
@@ -110,8 +119,8 @@ public class GUI extends JFrame{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] { 0, 0, 1 };
-		gbl_contentPane.rowHeights = new int[] { 208, 0, 29, 30, 36, 0, 1 };
+		gbl_contentPane.columnWidths = new int[] { 941, 0, 1 };
+		gbl_contentPane.rowHeights = new int[] { 208, 0, 29, 30, 45, 0, 1 };
 		gbl_contentPane.columnWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
 		gbl_contentPane.rowWeights = new double[] { 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
@@ -231,6 +240,8 @@ public class GUI extends JFrame{
 
 		panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.weighty = 1.0;
+		gbc_panel.weightx = 1.0;
 		gbc_panel.insets = new Insets(0, 0, 5, 0);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 1;
@@ -238,42 +249,43 @@ public class GUI extends JFrame{
 		contentPane.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] { 0, 0 };
-		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0 };
+		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
 		gbl_panel.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
-		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
 		lblReflector = new JLabel("Reflector");
 		GridBagConstraints gbc_lblReflector = new GridBagConstraints();
-		gbc_lblReflector.insets = new Insets(5, 0, 0, 0);
+		gbc_lblReflector.insets = new Insets(15, 0, 0, 0);
 		gbc_lblReflector.gridx = 0;
-		gbc_lblReflector.gridy = 0;
+		gbc_lblReflector.gridy = 1;
 		panel.add(lblReflector, gbc_lblReflector);
 
 		lblRotor = new JLabel("Rotor 3");
 		GridBagConstraints gbc_lblRotor = new GridBagConstraints();
-		gbc_lblRotor.insets = new Insets(25, 0, 5, 0);
+		gbc_lblRotor.insets = new Insets(35, 0, 5, 0);
 		gbc_lblRotor.gridx = 0;
-		gbc_lblRotor.gridy = 1;
+		gbc_lblRotor.gridy = 2;
 		panel.add(lblRotor, gbc_lblRotor);
 
 		lblRotor_1 = new JLabel("Rotor 2");
 		GridBagConstraints gbc_lblRotor_1 = new GridBagConstraints();
-		gbc_lblRotor_1.insets = new Insets(30, 0, 0, 0);
+		gbc_lblRotor_1.insets = new Insets(35, 0, 0, 0);
 		gbc_lblRotor_1.gridx = 0;
-		gbc_lblRotor_1.gridy = 2;
+		gbc_lblRotor_1.gridy = 3;
 		panel.add(lblRotor_1, gbc_lblRotor_1);
 
 		lblRotor_2 = new JLabel("Rotor 1");
 		GridBagConstraints gbc_lblRotor_2 = new GridBagConstraints();
 		gbc_lblRotor_2.insets = new Insets(35, 0, 0, 0);
 		gbc_lblRotor_2.gridx = 0;
-		gbc_lblRotor_2.gridy = 3;
+		gbc_lblRotor_2.gridy = 4;
 		panel.add(lblRotor_2, gbc_lblRotor_2);
 
 		lblKey = new JLabel("Key");
+		lblKey.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblKey = new GridBagConstraints();
-		gbc_lblKey.insets = new Insets(0, 0, 5, 5);
+		gbc_lblKey.insets = new Insets(0, 0, 20, 5);
 		gbc_lblKey.gridx = 0;
 		gbc_lblKey.gridy = 1;
 		contentPane.add(lblKey, gbc_lblKey);
@@ -293,7 +305,7 @@ public class GUI extends JFrame{
 		lowerPanel.setLayout(gbl_lowerPanel);
 
 		lblFirstRotor = new JLabel("First Rotor");
-		lblFirstRotor.setFont(new Font("Dialog", Font.BOLD, 8));
+		lblFirstRotor.setFont(new Font("Dialog", Font.BOLD, 12));
 		GridBagConstraints gbc_lblFirstRotor = new GridBagConstraints();
 		gbc_lblFirstRotor.insets = new Insets(0, 0, 5, 5);
 		gbc_lblFirstRotor.gridx = 1;
@@ -301,7 +313,7 @@ public class GUI extends JFrame{
 		lowerPanel.add(lblFirstRotor, gbc_lblFirstRotor);
 
 		lblSecondRotor = new JLabel("Second Rotor");
-		lblSecondRotor.setFont(new Font("Dialog", Font.BOLD, 8));
+		lblSecondRotor.setFont(new Font("Dialog", Font.BOLD, 12));
 		GridBagConstraints gbc_lblSecondRotor = new GridBagConstraints();
 		gbc_lblSecondRotor.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSecondRotor.gridx = 2;
@@ -309,7 +321,7 @@ public class GUI extends JFrame{
 		lowerPanel.add(lblSecondRotor, gbc_lblSecondRotor);
 
 		lblThirdRotor = new JLabel("Third Rotor");
-		lblThirdRotor.setFont(new Font("Dialog", Font.BOLD, 8));
+		lblThirdRotor.setFont(new Font("Dialog", Font.BOLD, 12));
 		GridBagConstraints gbc_lblThirdRotor = new GridBagConstraints();
 		gbc_lblThirdRotor.insets = new Insets(0, 0, 5, 5);
 		gbc_lblThirdRotor.gridx = 3;
@@ -317,9 +329,9 @@ public class GUI extends JFrame{
 		lowerPanel.add(lblThirdRotor, gbc_lblThirdRotor);
 
 		lblRotorNumber = new JLabel("Rotor Number");
-		lblRotorNumber.setFont(new Font("Dialog", Font.BOLD, 8));
+		lblRotorNumber.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRotorNumber.setFont(new Font("Dialog", Font.BOLD, 12));
 		GridBagConstraints gbc_lblRotorNumber = new GridBagConstraints();
-		gbc_lblRotorNumber.anchor = GridBagConstraints.EAST;
 		gbc_lblRotorNumber.insets = new Insets(0, 0, 5, 5);
 		gbc_lblRotorNumber.gridx = 0;
 		gbc_lblRotorNumber.gridy = 1;
@@ -353,9 +365,9 @@ public class GUI extends JFrame{
 		lowerPanel.add(keyThirdRotorNumber, gbc_keyThirdRotorNumber);
 
 		lblLeftOrRight = new JLabel("Left or Right");
-		lblLeftOrRight.setFont(new Font("Dialog", Font.BOLD, 8));
+		lblLeftOrRight.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLeftOrRight.setFont(new Font("Dialog", Font.BOLD, 12));
 		GridBagConstraints gbc_lblLeftOrRight = new GridBagConstraints();
-		gbc_lblLeftOrRight.anchor = GridBagConstraints.EAST;
 		gbc_lblLeftOrRight.insets = new Insets(0, 0, 5, 5);
 		gbc_lblLeftOrRight.gridx = 0;
 		gbc_lblLeftOrRight.gridy = 2;
@@ -389,7 +401,8 @@ public class GUI extends JFrame{
 		lowerPanel.add(keyThirdRotorOrientation, gbc_keyThirdRotorOrientation);
 
 		lblInitialRotations = new JLabel("Initial Rotations");
-		lblInitialRotations.setFont(new Font("Dialog", Font.BOLD, 8));
+		lblInitialRotations.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInitialRotations.setFont(new Font("Dialog", Font.BOLD, 12));
 		GridBagConstraints gbc_lblInitialRotations = new GridBagConstraints();
 		gbc_lblInitialRotations.insets = new Insets(0, 0, 5, 5);
 		gbc_lblInitialRotations.gridx = 0;
@@ -436,20 +449,30 @@ public class GUI extends JFrame{
 		panel_1.setLayout(gbl_panel_1);
 
 		encryptPane = new JTextPane();
+		encryptPane.setToolTipText("");
+		encryptScrollPane = new JScrollPane(encryptPane);
 		encryptPane.setFont(new Font("Dialog", Font.PLAIN, 10));
 		String chaine = encryptPane.getText();
 		GridBagConstraints gbc_encryptPane = new GridBagConstraints();
-		gbc_encryptPane.weightx = 1.0;
-		gbc_encryptPane.weighty = 1.0;
 		gbc_encryptPane.fill = GridBagConstraints.BOTH;
+		gbc_encryptPane.weighty = 1.0;
 		gbc_encryptPane.gridx = 0;
 		gbc_encryptPane.gridy = 0;
-		panel_1.add(encryptPane, gbc_encryptPane);
+		encryptPane.setPreferredSize( new Dimension( 200, 100 ) );
+		encryptPane.setMaximumSize(new Dimension( 200, 100 ));
+		panel_1.add(encryptScrollPane, gbc_encryptPane);
+		
+		lblTextToEncrypt = new JLabel("Text to encrypt");
+		GridBagConstraints gbc_lblTextToEncrypt = new GridBagConstraints();
+		gbc_lblTextToEncrypt.insets = new Insets(0, 0, 5, 0);
+		gbc_lblTextToEncrypt.gridx = 1;
+		gbc_lblTextToEncrypt.gridy = 3;
+		contentPane.add(lblTextToEncrypt, gbc_lblTextToEncrypt);
 
 		panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		gbc_panel_2.fill = GridBagConstraints.BOTH;
-		gbc_panel_2.insets = new Insets(0, 0, 0, 5);
+		gbc_panel_2.insets = new Insets(0, 0, 5, 5);
 		gbc_panel_2.gridx = 0;
 		gbc_panel_2.gridy = 4;
 		contentPane.add(panel_2, gbc_panel_2);
@@ -518,10 +541,12 @@ public class GUI extends JFrame{
 				algo.encrypt();
 				algo.nextStep();
 				decryptPane.setText(algo.getOutput().substring(0,algo.getPosition()));
+
 			}
+			
 		});
 		GridBagConstraints gbc_encryptButton = new GridBagConstraints();
-		gbc_encryptButton.insets = new Insets(0, 0, 0, 5);
+		gbc_encryptButton.insets = new Insets(30, 250, 0, 10);
 		gbc_encryptButton.gridx = 1;
 		gbc_encryptButton.gridy = 0;
 		panel_2.add(encryptButton, gbc_encryptButton);
@@ -560,7 +585,7 @@ public class GUI extends JFrame{
 		});
 		GridBagConstraints gbc_nextStepButton = new GridBagConstraints();
 		gbc_nextStepButton.fill = GridBagConstraints.HORIZONTAL;
-		gbc_nextStepButton.insets = new Insets(0, 0, 0, 5);
+		gbc_nextStepButton.insets = new Insets(30, 0, 0, 10);
 		gbc_nextStepButton.gridx = 3;
 		gbc_nextStepButton.gridy = 0;
 		panel_2.add(nextStepButton, gbc_nextStepButton);
@@ -628,7 +653,7 @@ public class GUI extends JFrame{
 			}
 		});
 		GridBagConstraints gbc_decryptButton = new GridBagConstraints();
-		gbc_decryptButton.insets = new Insets(0, 0, 0, 5);
+		gbc_decryptButton.insets = new Insets(30, 0, 0, 10);
 		gbc_decryptButton.fill = GridBagConstraints.HORIZONTAL;
 		gbc_decryptButton.gridx = 5;
 		gbc_decryptButton.gridy = 0;
@@ -637,6 +662,7 @@ public class GUI extends JFrame{
 		cancelButton = new JButton("Cancel");
 		cancelButton.setEnabled(false);
 		GridBagConstraints gbc_cancelButton = new GridBagConstraints();
+		gbc_cancelButton.insets = new Insets(30, 0, 0, 0);
 		gbc_cancelButton.gridx = 7;
 		gbc_cancelButton.gridy = 0;
 		panel_2.add(cancelButton, gbc_cancelButton);
@@ -666,6 +692,7 @@ public class GUI extends JFrame{
 		panel_3.setLayout(gbl_panel_3);
 
 		decryptPane = new JTextPane();
+		decryptScrollPane = new JScrollPane(decryptPane);
 		decryptPane.setFont(new Font("Dialog", Font.PLAIN, 10));
 		GridBagConstraints gbc_decryptPane = new GridBagConstraints();
 		gbc_decryptPane.weightx = 1.0;
@@ -673,7 +700,13 @@ public class GUI extends JFrame{
 		gbc_decryptPane.fill = GridBagConstraints.BOTH;
 		gbc_decryptPane.gridx = 0;
 		gbc_decryptPane.gridy = 0;
-		panel_3.add(decryptPane, gbc_decryptPane);
+		panel_3.add(decryptScrollPane, gbc_decryptPane);
+		
+		lblTextToDecrypt = new JLabel("Text to decrypt");
+		GridBagConstraints gbc_lblTextToDecrypt = new GridBagConstraints();
+		gbc_lblTextToDecrypt.gridx = 1;
+		gbc_lblTextToDecrypt.gridy = 5;
+		contentPane.add(lblTextToDecrypt, gbc_lblTextToDecrypt);
 		
 		for(int i=0; i<26;i++) {
 			this.getTableReflector().setValueAt(ref.getNum(i), 0, i);
