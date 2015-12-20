@@ -25,6 +25,7 @@ import engine.CryptAlgo;
 import engine.Key;
 import engine.Reflector;
 import engine.Rotor;
+import javax.swing.SpinnerNumberModel;
 
 public class GUI extends JFrame{
 
@@ -43,22 +44,22 @@ public class GUI extends JFrame{
 	private JPanel panel_2;
 	private JPanel panel_3;
 	private JLabel lblKey;
-	private JButton btnNewButton;
-	private JSpinner spinner_1;
-	private JSpinner spinner_3;
-	private JSpinner spinner_5;
+	private JButton setButton;
+	private JSpinner keyFirstRotorInitialRotation;
+	private JSpinner keySecondRotorInitialRotation;
+	private JSpinner keyThirdRotorInitialRotation;
 	private JLabel lblFirstRotor;
 	private JLabel lblSecondRotor;
 	private JLabel lblThirdRotor;
 	private JLabel lblRotorNumber;
 	private JLabel lblLeftOrRight;
 	private JLabel lblInitialRotations;
-	private JComboBox comboBox;
-	private JComboBox comboBox_1;
-	private JComboBox comboBox_2;
-	private JComboBox comboBox_3;
-	private JComboBox comboBox_4;
-	private JComboBox comboBox_5;
+	private JComboBox keyFirstRotorOrientation;
+	private JComboBox keySecondRotorOrientation;
+	private JComboBox keyThirdRotorOrientation;
+	private JComboBox keyFirstRotorNumber;
+	private JComboBox keySecondRotorNumber;
+	private JComboBox keyThirdRotorNumber;
 	private JTextPane txtpnEntrezLaChaine;
 	private JTextPane textPane_1;
 	private JButton encrypt;
@@ -130,6 +131,7 @@ public class GUI extends JFrame{
 		upperPanel.setLayout(gbl_upperPanel);
 
 		tableReflector = new JTable();
+		tableReflector.setEnabled(false);
 		tableReflector.setModel(new DefaultTableModel(
 				new Object[][] { { null, null, null, null, null, null, null, null, null, null, null, null, null, null,
 						null, null, null, null, null, null, null, null, null, null, null, null }, },
@@ -148,6 +150,7 @@ public class GUI extends JFrame{
 		upperPanel.add(tableReflector, gbc_tableReflector);
 
 		tableRotor3 = new JTable();
+		tableRotor3.setEnabled(false);
 		tableRotor3.setModel(new DefaultTableModel(
 				new Object[][] {
 						{ null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
@@ -168,6 +171,7 @@ public class GUI extends JFrame{
 		upperPanel.add(tableRotor3, gbc_tableRotor3);
 
 		tableRotor2 = new JTable();
+		tableRotor2.setEnabled(false);
 		tableRotor2.setModel(new DefaultTableModel(
 				new Object[][] {
 						{ null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
@@ -188,6 +192,7 @@ public class GUI extends JFrame{
 		upperPanel.add(tableRotor2, gbc_tableRotor2);
 
 		tableRotor1 = new JTable();
+		tableRotor1.setEnabled(false);
 		tableRotor1.setModel(new DefaultTableModel(
 				new Object[][] {
 						{ null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
@@ -208,6 +213,7 @@ public class GUI extends JFrame{
 		upperPanel.add(tableRotor1, gbc_tableRotor1);
 
 		tableAlphabet = new JTable();
+		tableAlphabet.setEnabled(false);
 		tableAlphabet.setModel(new DefaultTableModel(
 				new Object[][] { { null, null, null, null, null, null, null, null, null, null, null, null, null, null,
 						null, null, null, null, null, null, null, null, null, null, null, null }, },
@@ -319,32 +325,32 @@ public class GUI extends JFrame{
 		gbc_lblRotorNumber.gridy = 1;
 		lowerPanel.add(lblRotorNumber, gbc_lblRotorNumber);
 
-		comboBox_3 = new JComboBox();
-		comboBox_3.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3" }));
-		GridBagConstraints gbc_comboBox_3 = new GridBagConstraints();
-		gbc_comboBox_3.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox_3.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_3.gridx = 1;
-		gbc_comboBox_3.gridy = 1;
-		lowerPanel.add(comboBox_3, gbc_comboBox_3);
+		keyFirstRotorNumber = new JComboBox();
+		keyFirstRotorNumber.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3" }));
+		GridBagConstraints gbc_keyFirstRotorNumber = new GridBagConstraints();
+		gbc_keyFirstRotorNumber.insets = new Insets(0, 0, 5, 5);
+		gbc_keyFirstRotorNumber.fill = GridBagConstraints.HORIZONTAL;
+		gbc_keyFirstRotorNumber.gridx = 1;
+		gbc_keyFirstRotorNumber.gridy = 1;
+		lowerPanel.add(keyFirstRotorNumber, gbc_keyFirstRotorNumber);
 
-		comboBox_4 = new JComboBox();
-		comboBox_4.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3" }));
-		GridBagConstraints gbc_comboBox_4 = new GridBagConstraints();
-		gbc_comboBox_4.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox_4.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_4.gridx = 2;
-		gbc_comboBox_4.gridy = 1;
-		lowerPanel.add(comboBox_4, gbc_comboBox_4);
+		keySecondRotorNumber = new JComboBox();
+		keySecondRotorNumber.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3" }));
+		GridBagConstraints gbc_keySecondRotorNumber = new GridBagConstraints();
+		gbc_keySecondRotorNumber.insets = new Insets(0, 0, 5, 5);
+		gbc_keySecondRotorNumber.fill = GridBagConstraints.HORIZONTAL;
+		gbc_keySecondRotorNumber.gridx = 2;
+		gbc_keySecondRotorNumber.gridy = 1;
+		lowerPanel.add(keySecondRotorNumber, gbc_keySecondRotorNumber);
 
-		comboBox_5 = new JComboBox();
-		comboBox_5.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3" }));
-		GridBagConstraints gbc_comboBox_5 = new GridBagConstraints();
-		gbc_comboBox_5.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox_5.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_5.gridx = 3;
-		gbc_comboBox_5.gridy = 1;
-		lowerPanel.add(comboBox_5, gbc_comboBox_5);
+		keyThirdRotorNumber = new JComboBox();
+		keyThirdRotorNumber.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3" }));
+		GridBagConstraints gbc_keyThirdRotorNumber = new GridBagConstraints();
+		gbc_keyThirdRotorNumber.insets = new Insets(0, 0, 5, 5);
+		gbc_keyThirdRotorNumber.fill = GridBagConstraints.HORIZONTAL;
+		gbc_keyThirdRotorNumber.gridx = 3;
+		gbc_keyThirdRotorNumber.gridy = 1;
+		lowerPanel.add(keyThirdRotorNumber, gbc_keyThirdRotorNumber);
 
 		lblLeftOrRight = new JLabel("Left or Right");
 		lblLeftOrRight.setFont(new Font("Dialog", Font.BOLD, 8));
@@ -355,40 +361,86 @@ public class GUI extends JFrame{
 		gbc_lblLeftOrRight.gridy = 2;
 		lowerPanel.add(lblLeftOrRight, gbc_lblLeftOrRight);
 
-		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Left", "Right" }));
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 1;
-		gbc_comboBox.gridy = 2;
-		lowerPanel.add(comboBox, gbc_comboBox);
+		keyFirstRotorOrientation = new JComboBox();
+		keyFirstRotorOrientation.setModel(new DefaultComboBoxModel(new String[] { "Left", "Right" }));
+		GridBagConstraints gbc_keyFirstRotorOrientation = new GridBagConstraints();
+		gbc_keyFirstRotorOrientation.insets = new Insets(0, 0, 5, 5);
+		gbc_keyFirstRotorOrientation.fill = GridBagConstraints.HORIZONTAL;
+		gbc_keyFirstRotorOrientation.gridx = 1;
+		gbc_keyFirstRotorOrientation.gridy = 2;
+		lowerPanel.add(keyFirstRotorOrientation, gbc_keyFirstRotorOrientation);
 
-		comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "Left", "Right" }));
-		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
-		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_1.gridx = 2;
-		gbc_comboBox_1.gridy = 2;
-		lowerPanel.add(comboBox_1, gbc_comboBox_1);
+		keySecondRotorOrientation = new JComboBox();
+		keySecondRotorOrientation.setModel(new DefaultComboBoxModel(new String[] { "Left", "Right" }));
+		GridBagConstraints gbc_keySecondRotorOrientation = new GridBagConstraints();
+		gbc_keySecondRotorOrientation.insets = new Insets(0, 0, 5, 5);
+		gbc_keySecondRotorOrientation.fill = GridBagConstraints.HORIZONTAL;
+		gbc_keySecondRotorOrientation.gridx = 2;
+		gbc_keySecondRotorOrientation.gridy = 2;
+		lowerPanel.add(keySecondRotorOrientation, gbc_keySecondRotorOrientation);
 
-		comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] { "Left", "Right" }));
-		GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
-		gbc_comboBox_2.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_2.gridx = 3;
-		gbc_comboBox_2.gridy = 2;
-		lowerPanel.add(comboBox_2, gbc_comboBox_2);
+		keyThirdRotorOrientation = new JComboBox();
+		keyThirdRotorOrientation.setModel(new DefaultComboBoxModel(new String[] { "Left", "Right" }));
+		GridBagConstraints gbc_keyThirdRotorOrientation = new GridBagConstraints();
+		gbc_keyThirdRotorOrientation.insets = new Insets(0, 0, 5, 5);
+		gbc_keyThirdRotorOrientation.fill = GridBagConstraints.HORIZONTAL;
+		gbc_keyThirdRotorOrientation.gridx = 3;
+		gbc_keyThirdRotorOrientation.gridy = 2;
+		lowerPanel.add(keyThirdRotorOrientation, gbc_keyThirdRotorOrientation);
 
-		btnNewButton = new JButton("Set");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.gridwidth = 3;
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 4;
-		gbc_btnNewButton.gridy = 2;
-		lowerPanel.add(btnNewButton, gbc_btnNewButton);
+		setButton = new JButton("Set");
+		setButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				k.setSequenceRotor(0, rotList.get(getKeyFirstRotorNumber().getSelectedIndex()));
+				k.setSequenceRotor(1, rotList.get(getKeySecondRotorNumber().getSelectedIndex()));
+				k.setSequenceRotor(2, rotList.get(getKeyThirdRotorNumber().getSelectedIndex()));
+				
+				boolean orientation = false;
+				if(getKeyFirstRotorOrientation().getSelectedIndex()==0) {
+					orientation = true;
+				}
+				else {
+					orientation = false;
+				}
+				k.setSequenceOrientation(0, orientation);
+				if(getKeySecondRotorOrientation().getSelectedIndex()==0) {
+					orientation = true;
+				}
+				else {
+					orientation = false;
+				}
+				k.setSequenceOrientation(1, orientation);
+				if(getKeyThirdRotorOrientation().getSelectedIndex()==0) {
+					orientation = true;
+				}
+				else {
+					orientation = false;
+				}
+				k.setSequenceOrientation(2, orientation);
+				
+				k.setSequenceInit(0, (Integer) getKeyFirstRotorInitialRotation().getValue());
+				k.setSequenceInit(1, (Integer) getKeySecondRotorInitialRotation().getValue());
+				k.setSequenceInit(2, (Integer) getKeyThirdRotorInitialRotation().getValue());
+				algo.encrypt();
+				
+				for(int i=0; i<26;i++) {
+					getTableReflector().setValueAt(ref.getNum(i), 0, i);
+					getTableRotor3().setValueAt(rot3.getUpperLaneValue(i), 0, i);
+					getTableRotor3().setValueAt(rot3.getLowerLaneValue(i), 1, i);
+					getTableRotor2().setValueAt(rot2.getUpperLaneValue(i), 0, i);
+					getTableRotor2().setValueAt(rot2.getLowerLaneValue(i), 1, i);
+					getTableRotor1().setValueAt(rot1.getUpperLaneValue(i), 0, i);
+					getTableRotor1().setValueAt(rot1.getLowerLaneValue(i), 1, i);
+					getTableAlphabet().setValueAt(abc.getLetter(i), 0, i);
+				}
+			}
+		});
+		GridBagConstraints gbc_setButton = new GridBagConstraints();
+		gbc_setButton.gridwidth = 3;
+		gbc_setButton.insets = new Insets(0, 0, 5, 5);
+		gbc_setButton.gridx = 4;
+		gbc_setButton.gridy = 2;
+		lowerPanel.add(setButton, gbc_setButton);
 
 		lblInitialRotations = new JLabel("Initial Rotations");
 		lblInitialRotations.setFont(new Font("Dialog", Font.BOLD, 8));
@@ -398,29 +450,30 @@ public class GUI extends JFrame{
 		gbc_lblInitialRotations.gridy = 3;
 		lowerPanel.add(lblInitialRotations, gbc_lblInitialRotations);
 
-		spinner_1 = new JSpinner();
-		GridBagConstraints gbc_spinner_1 = new GridBagConstraints();
-		gbc_spinner_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_spinner_1.insets = new Insets(0, 0, 5, 5);
-		gbc_spinner_1.gridx = 1;
-		gbc_spinner_1.gridy = 3;
-		lowerPanel.add(spinner_1, gbc_spinner_1);
+		keyFirstRotorInitialRotation = new JSpinner();
+		keyFirstRotorInitialRotation.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
+		GridBagConstraints gbc_keyFirstRotorInitialRotation = new GridBagConstraints();
+		gbc_keyFirstRotorInitialRotation.fill = GridBagConstraints.HORIZONTAL;
+		gbc_keyFirstRotorInitialRotation.insets = new Insets(0, 0, 5, 5);
+		gbc_keyFirstRotorInitialRotation.gridx = 1;
+		gbc_keyFirstRotorInitialRotation.gridy = 3;
+		lowerPanel.add(keyFirstRotorInitialRotation, gbc_keyFirstRotorInitialRotation);
 
-		spinner_3 = new JSpinner();
-		GridBagConstraints gbc_spinner_3 = new GridBagConstraints();
-		gbc_spinner_3.fill = GridBagConstraints.HORIZONTAL;
-		gbc_spinner_3.insets = new Insets(0, 0, 5, 5);
-		gbc_spinner_3.gridx = 2;
-		gbc_spinner_3.gridy = 3;
-		lowerPanel.add(spinner_3, gbc_spinner_3);
+		keySecondRotorInitialRotation = new JSpinner();
+		GridBagConstraints gbc_keySecondRotorInitialRotation = new GridBagConstraints();
+		gbc_keySecondRotorInitialRotation.fill = GridBagConstraints.HORIZONTAL;
+		gbc_keySecondRotorInitialRotation.insets = new Insets(0, 0, 5, 5);
+		gbc_keySecondRotorInitialRotation.gridx = 2;
+		gbc_keySecondRotorInitialRotation.gridy = 3;
+		lowerPanel.add(keySecondRotorInitialRotation, gbc_keySecondRotorInitialRotation);
 
-		spinner_5 = new JSpinner();
-		GridBagConstraints gbc_spinner_5 = new GridBagConstraints();
-		gbc_spinner_5.fill = GridBagConstraints.HORIZONTAL;
-		gbc_spinner_5.insets = new Insets(0, 0, 5, 5);
-		gbc_spinner_5.gridx = 3;
-		gbc_spinner_5.gridy = 3;
-		lowerPanel.add(spinner_5, gbc_spinner_5);
+		keyThirdRotorInitialRotation = new JSpinner();
+		GridBagConstraints gbc_keyThirdRotorInitialRotation = new GridBagConstraints();
+		gbc_keyThirdRotorInitialRotation.fill = GridBagConstraints.HORIZONTAL;
+		gbc_keyThirdRotorInitialRotation.insets = new Insets(0, 0, 5, 5);
+		gbc_keyThirdRotorInitialRotation.gridx = 3;
+		gbc_keyThirdRotorInitialRotation.gridy = 3;
+		lowerPanel.add(keyThirdRotorInitialRotation, gbc_keyThirdRotorInitialRotation);
 
 		panel_1 = new JPanel();
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
@@ -540,6 +593,7 @@ public class GUI extends JFrame{
 			this.getTableRotor1().setValueAt(rot1.getLowerLaneValue(i), 1, i);
 			this.getTableAlphabet().setValueAt(abc.getLetter(i), 0, i);
 		}
+		
 	}
 	
 	/**
@@ -580,63 +634,63 @@ public class GUI extends JFrame{
 	/**
 	 * @return the spinner_1
 	 */
-	public JSpinner getSpinner_1() {
-		return spinner_1;
+	public JSpinner getKeyFirstRotorInitialRotation() {
+		return keyFirstRotorInitialRotation;
 	}
 
 	/**
 	 * @return the spinner_3
 	 */
-	public JSpinner getSpinner_3() {
-		return spinner_3;
+	public JSpinner getKeySecondRotorInitialRotation() {
+		return keySecondRotorInitialRotation;
 	}
 
 	/**
 	 * @return the spinner_5
 	 */
-	public JSpinner getSpinner_5() {
-		return spinner_5;
+	public JSpinner getKeyThirdRotorInitialRotation() {
+		return keyThirdRotorInitialRotation;
 	}
 
 	/**
 	 * @return the comboBox
 	 */
-	public JComboBox getComboBox() {
-		return comboBox;
+	public JComboBox getKeyFirstRotorOrientation() {
+		return keyFirstRotorOrientation;
 	}
 
 	/**
 	 * @return the comboBox_1
 	 */
-	public JComboBox getComboBox_1() {
-		return comboBox_1;
+	public JComboBox getKeySecondRotorOrientation() {
+		return keySecondRotorOrientation;
 	}
 
 	/**
 	 * @return the comboBox_2
 	 */
-	public JComboBox getComboBox_2() {
-		return comboBox_2;
+	public JComboBox getKeyThirdRotorOrientation() {
+		return keyThirdRotorOrientation;
 	}
 
 	/**
 	 * @return the comboBox_3
 	 */
-	public JComboBox getComboBox_3() {
-		return comboBox_3;
+	public JComboBox getKeyFirstRotorNumber() {
+		return keyFirstRotorNumber;
 	}
 
 	/**
 	 * @return the comboBox_4
 	 */
-	public JComboBox getComboBox_4() {
-		return comboBox_4;
+	public JComboBox getKeySecondRotorNumber() {
+		return keySecondRotorNumber;
 	}
 
 	/**
 	 * @return the comboBox_5
 	 */
-	public JComboBox getComboBox_5() {
-		return comboBox_5;
+	public JComboBox getKeyThirdRotorNumber() {
+		return keyThirdRotorNumber;
 	}
 }
