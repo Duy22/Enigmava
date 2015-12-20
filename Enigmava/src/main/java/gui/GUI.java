@@ -44,7 +44,6 @@ public class GUI extends JFrame{
 	private JPanel panel_2;
 	private JPanel panel_3;
 	private JLabel lblKey;
-	private JButton setButton;
 	private JSpinner keyFirstRotorInitialRotation;
 	private JSpinner keySecondRotorInitialRotation;
 	private JSpinner keyThirdRotorInitialRotation;
@@ -65,6 +64,7 @@ public class GUI extends JFrame{
 	private JButton encryptButton;
 	private JButton nextStepButton;
 	private JButton decryptButton;
+	private JButton cancelButton;
 	private Alphabet abc;
 	private Reflector ref;
 	private Rotor rot1;
@@ -73,7 +73,7 @@ public class GUI extends JFrame{
 	private Key k;
 	private ArrayList<Rotor> rotList;
 	private CryptAlgo algo;
-
+	private boolean encryptBoolean;
 	
 	
 
@@ -388,60 +388,6 @@ public class GUI extends JFrame{
 		gbc_keyThirdRotorOrientation.gridy = 2;
 		lowerPanel.add(keyThirdRotorOrientation, gbc_keyThirdRotorOrientation);
 
-		setButton = new JButton("Set");
-		setButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				k.setSequenceRotor(0, rotList.get(getKeyFirstRotorNumber().getSelectedIndex()));
-				k.setSequenceRotor(1, rotList.get(getKeySecondRotorNumber().getSelectedIndex()));
-				k.setSequenceRotor(2, rotList.get(getKeyThirdRotorNumber().getSelectedIndex()));
-				
-				boolean orientation = false;
-				if(getKeyFirstRotorOrientation().getSelectedIndex()==0) {
-					orientation = true;
-				}
-				else {
-					orientation = false;
-				}
-				k.setSequenceOrientation(0, orientation);
-				if(getKeySecondRotorOrientation().getSelectedIndex()==0) {
-					orientation = true;
-				}
-				else {
-					orientation = false;
-				}
-				k.setSequenceOrientation(1, orientation);
-				if(getKeyThirdRotorOrientation().getSelectedIndex()==0) {
-					orientation = true;
-				}
-				else {
-					orientation = false;
-				}
-				k.setSequenceOrientation(2, orientation);
-				
-				k.setSequenceInit(0, (Integer) getKeyFirstRotorInitialRotation().getValue());
-				k.setSequenceInit(1, (Integer) getKeySecondRotorInitialRotation().getValue());
-				k.setSequenceInit(2, (Integer) getKeyThirdRotorInitialRotation().getValue());
-				algo.encrypt();
-				
-				for(int i=0; i<26;i++) {
-					getTableReflector().setValueAt(ref.getNum(i), 0, i);
-					getTableRotor3().setValueAt(rot3.getUpperLaneValue(i), 0, i);
-					getTableRotor3().setValueAt(rot3.getLowerLaneValue(i), 1, i);
-					getTableRotor2().setValueAt(rot2.getUpperLaneValue(i), 0, i);
-					getTableRotor2().setValueAt(rot2.getLowerLaneValue(i), 1, i);
-					getTableRotor1().setValueAt(rot1.getUpperLaneValue(i), 0, i);
-					getTableRotor1().setValueAt(rot1.getLowerLaneValue(i), 1, i);
-					getTableAlphabet().setValueAt(abc.getLetter(i), 0, i);
-				}
-			}
-		});
-		GridBagConstraints gbc_setButton = new GridBagConstraints();
-		gbc_setButton.gridwidth = 3;
-		gbc_setButton.insets = new Insets(0, 0, 5, 5);
-		gbc_setButton.gridx = 4;
-		gbc_setButton.gridy = 2;
-		lowerPanel.add(setButton, gbc_setButton);
-
 		lblInitialRotations = new JLabel("Initial Rotations");
 		lblInitialRotations.setFont(new Font("Dialog", Font.BOLD, 8));
 		GridBagConstraints gbc_lblInitialRotations = new GridBagConstraints();
@@ -508,15 +454,20 @@ public class GUI extends JFrame{
 		gbc_panel_2.gridy = 4;
 		contentPane.add(panel_2, gbc_panel_2);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel_2.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_panel_2.rowHeights = new int[] { 0, 0 };
-		gbl_panel_2.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel_2.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gbl_panel_2.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		panel_2.setLayout(gbl_panel_2);
 
 		encryptButton = new JButton("Encrypt");
 		encryptButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				encryptBoolean = true;
+				nextStepButton.setEnabled(true);
+				encryptButton.setEnabled(false);
+				decryptButton.setEnabled(false);
+				cancelButton.setEnabled(true);
 				k.setSequenceRotor(0, rotList.get(getKeyFirstRotorNumber().getSelectedIndex()));
 				k.setSequenceRotor(1, rotList.get(getKeySecondRotorNumber().getSelectedIndex()));
 				k.setSequenceRotor(2, rotList.get(getKeyThirdRotorNumber().getSelectedIndex()));
@@ -566,7 +517,7 @@ public class GUI extends JFrame{
 				algo.setInput(encryptPane.getText());
 				algo.encrypt();
 				algo.nextStep();
-				decryptPane.setText(algo.getOutput());
+				decryptPane.setText(algo.getOutput().substring(0,algo.getPosition()));
 			}
 		});
 		GridBagConstraints gbc_encryptButton = new GridBagConstraints();
@@ -576,9 +527,35 @@ public class GUI extends JFrame{
 		panel_2.add(encryptButton, gbc_encryptButton);
 
 		nextStepButton = new JButton("Next Step");
+		nextStepButton.setEnabled(false);
 		nextStepButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("bouton nextStep");
+				if(encryptBoolean) {
+					algo.nextStep();
+					decryptPane.setText(algo.getOutput().substring(0,algo.getPosition()));
+				}
+				else {
+					algo.nextStep();
+					encryptPane.setText(algo.getOutput().substring(0,algo.getPosition()));
+				}
+				if(algo.getPosition() == algo.getOutput().length()) {
+					nextStepButton.setEnabled(false);
+					encryptButton.setEnabled(true);
+					decryptButton.setEnabled(true);
+					encryptPane.setEditable(true);
+					decryptPane.setEditable(true);
+					cancelButton.setEnabled(false);
+				}
+				for(int i=0; i<26;i++) {
+					getTableReflector().setValueAt(ref.getNum(i), 0, i);
+					getTableRotor3().setValueAt(rot3.getUpperLaneValue(i), 0, i);
+					getTableRotor3().setValueAt(rot3.getLowerLaneValue(i), 1, i);
+					getTableRotor2().setValueAt(rot2.getUpperLaneValue(i), 0, i);
+					getTableRotor2().setValueAt(rot2.getLowerLaneValue(i), 1, i);
+					getTableRotor1().setValueAt(rot1.getUpperLaneValue(i), 0, i);
+					getTableRotor1().setValueAt(rot1.getLowerLaneValue(i), 1, i);
+					getTableAlphabet().setValueAt(abc.getLetter(i), 0, i);
+				}
 			}
 		});
 		GridBagConstraints gbc_nextStepButton = new GridBagConstraints();
@@ -593,6 +570,11 @@ public class GUI extends JFrame{
 		decryptButton = new JButton("Decrypt");
 		decryptButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				encryptBoolean = false;
+				nextStepButton.setEnabled(true);
+				encryptButton.setEnabled(false);
+				decryptButton.setEnabled(false);
+				cancelButton.setEnabled(true);
 				k.setSequenceRotor(0, rotList.get(getKeyFirstRotorNumber().getSelectedIndex()));
 				k.setSequenceRotor(1, rotList.get(getKeySecondRotorNumber().getSelectedIndex()));
 				k.setSequenceRotor(2, rotList.get(getKeyThirdRotorNumber().getSelectedIndex()));
@@ -642,14 +624,32 @@ public class GUI extends JFrame{
 				algo.setInput(decryptPane.getText());
 				algo.encrypt();
 				algo.nextStep();
-				encryptPane.setText(algo.getOutput());
+				encryptPane.setText(algo.getOutput().substring(0,algo.getPosition()));
 			}
 		});
 		GridBagConstraints gbc_decryptButton = new GridBagConstraints();
+		gbc_decryptButton.insets = new Insets(0, 0, 0, 5);
 		gbc_decryptButton.fill = GridBagConstraints.HORIZONTAL;
 		gbc_decryptButton.gridx = 5;
 		gbc_decryptButton.gridy = 0;
 		panel_2.add(decryptButton, gbc_decryptButton);
+		
+		cancelButton = new JButton("Cancel");
+		cancelButton.setEnabled(false);
+		GridBagConstraints gbc_cancelButton = new GridBagConstraints();
+		gbc_cancelButton.gridx = 7;
+		gbc_cancelButton.gridy = 0;
+		panel_2.add(cancelButton, gbc_cancelButton);
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				encryptButton.setEnabled(true);
+				decryptButton.setEnabled(true);
+				nextStepButton.setEnabled(false);
+				encryptPane.setEditable(true);
+				decryptPane.setEditable(true);
+				cancelButton.setEnabled(false);
+			}			
+		});
 
 		panel_3 = new JPanel();
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();

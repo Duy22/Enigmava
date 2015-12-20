@@ -57,6 +57,10 @@ public class CryptAlgo {
 		return this.position;
 	}
 
+	public int getAlgoIndex() {
+		return this.algoIndex;
+	}
+	
 	public void setOutput(String str) {
 		this.output = str;
 	}
@@ -346,7 +350,6 @@ public class CryptAlgo {
 																				// the
 																				// right
 																				// otherwise
-						System.out.println(rotorInt);
 					}
 				}
 				
@@ -358,12 +361,6 @@ public class CryptAlgo {
 			this.position++; // increment the position int
 												// to the next iteration
 
-		} else {
-			System.out.println("Next step cannot be processed because the decryption or encryption is complete"); // to
-																													// implement
-																													// lately
-																													// a
-																													// message
 		}
 	}
 
