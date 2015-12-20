@@ -13,41 +13,31 @@ public class QuickTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Alphabet abc = new Alphabet();
-		/*for (int i=0;i<26;i++){
-			System.out.println(abc.getLetter(i));
-		}*/
-
-		Reflector ref = new Reflector();
-		Rotor rot1 = new Rotor();
-		Rotor rot2 = new Rotor();
-		Rotor rot3 = new Rotor();
-		Key k = new Key(rot2,rot3,rot1);
-		k.setSequenceInit(0, -7);
-		k.setSequenceInit(1, 1);
-		k.setSequenceInit(2, -1);
-		k.setSequenceOrientation(0, true);
-		k.setSequenceOrientation(1, false);
-		k.setSequenceOrientation(2, true);
-		ArrayList<Rotor> rotList = new ArrayList<Rotor>();
-		rotList.add(0, rot1);
-		rotList.add(1, rot2);
-		rotList.add(2, rot3);
+//		k.setSequenceInit(0, -7);
+//		k.setSequenceInit(1, 1);
+//		k.setSequenceInit(2, -1);
+//		k.setSequenceOrientation(0, true);
+//		k.setSequenceOrientation(1, false);
+//		k.setSequenceOrientation(2, true);
+//		
+//		rotList.add(0, rot1);
+//		rotList.add(1, rot2);
+//		rotList.add(2, rot3);
 		
 		
-		CryptAlgo algo = new CryptAlgo(k, rotList, ref, abc);
-		algo.initReflector();		
+//		algo.initReflector();		
 		GUI interfaceGraphique = new GUI();
-		for(int i=0; i<26;i++) {
-			interfaceGraphique.getTableReflector().setValueAt(ref.getNum(i), 0, i);
-			interfaceGraphique.getTableRotor3().setValueAt(rot3.getUpperLaneValue(i), 0, i);
-			interfaceGraphique.getTableRotor3().setValueAt(rot3.getLowerLaneValue(i), 1, i);
-			interfaceGraphique.getTableRotor2().setValueAt(rot2.getUpperLaneValue(i), 0, i);
-			interfaceGraphique.getTableRotor2().setValueAt(rot2.getLowerLaneValue(i), 1, i);
-			interfaceGraphique.getTableRotor1().setValueAt(rot1.getUpperLaneValue(i), 0, i);
-			interfaceGraphique.getTableRotor1().setValueAt(rot1.getLowerLaneValue(i), 1, i);
-			interfaceGraphique.getTableAlphabet().setValueAt(abc.getLetter(i), 0, i);
-		}
+//		for(int i=0; i<26;i++) {
+//			interfaceGraphique.getTableReflector().setValueAt(ref.getNum(i), 0, i);
+//			interfaceGraphique.getTableRotor3().setValueAt(rot3.getUpperLaneValue(i), 0, i);
+//			interfaceGraphique.getTableRotor3().setValueAt(rot3.getLowerLaneValue(i), 1, i);
+//			interfaceGraphique.getTableRotor2().setValueAt(rot2.getUpperLaneValue(i), 0, i);
+//			interfaceGraphique.getTableRotor2().setValueAt(rot2.getLowerLaneValue(i), 1, i);
+//			interfaceGraphique.getTableRotor1().setValueAt(rot1.getUpperLaneValue(i), 0, i);
+//			interfaceGraphique.getTableRotor1().setValueAt(rot1.getLowerLaneValue(i), 1, i);
+//			interfaceGraphique.getTableAlphabet().setValueAt(abc.getLetter(i), 0, i);
+//		}
+		
 		interfaceGraphique.setVisible(true);
 		/*for(int i = 0; i<chaine.length();i++) {
 			algo.nextStep();
