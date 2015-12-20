@@ -60,11 +60,11 @@ public class GUI extends JFrame{
 	private JComboBox keyFirstRotorNumber;
 	private JComboBox keySecondRotorNumber;
 	private JComboBox keyThirdRotorNumber;
-	private JTextPane txtpnEntrezLaChaine;
-	private JTextPane textPane_1;
-	private JButton encrypt;
+	private JTextPane encryptPane;
+	private JTextPane decryptPane;
+	private JButton encryptButton;
 	private JButton nextStepButton;
-	private JButton decrypt;
+	private JButton decryptButton;
 	private Alphabet abc;
 	private Reflector ref;
 	private Rotor rot1;
@@ -489,16 +489,16 @@ public class GUI extends JFrame{
 		gbl_panel_1.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
 		panel_1.setLayout(gbl_panel_1);
 
-		txtpnEntrezLaChaine = new JTextPane();
-		txtpnEntrezLaChaine.setFont(new Font("Dialog", Font.PLAIN, 10));
-		String chaine = txtpnEntrezLaChaine.getText();
-		GridBagConstraints gbc_txtpnEntrezLaChaine = new GridBagConstraints();
-		gbc_txtpnEntrezLaChaine.weightx = 1.0;
-		gbc_txtpnEntrezLaChaine.weighty = 1.0;
-		gbc_txtpnEntrezLaChaine.fill = GridBagConstraints.BOTH;
-		gbc_txtpnEntrezLaChaine.gridx = 0;
-		gbc_txtpnEntrezLaChaine.gridy = 0;
-		panel_1.add(txtpnEntrezLaChaine, gbc_txtpnEntrezLaChaine);
+		encryptPane = new JTextPane();
+		encryptPane.setFont(new Font("Dialog", Font.PLAIN, 10));
+		String chaine = encryptPane.getText();
+		GridBagConstraints gbc_encryptPane = new GridBagConstraints();
+		gbc_encryptPane.weightx = 1.0;
+		gbc_encryptPane.weighty = 1.0;
+		gbc_encryptPane.fill = GridBagConstraints.BOTH;
+		gbc_encryptPane.gridx = 0;
+		gbc_encryptPane.gridy = 0;
+		panel_1.add(encryptPane, gbc_encryptPane);
 
 		panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
@@ -514,23 +514,66 @@ public class GUI extends JFrame{
 		gbl_panel_2.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		panel_2.setLayout(gbl_panel_2);
 
-		encrypt = new JButton("Encrypt");
-		encrypt.addActionListener(new ActionListener() {
+		encryptButton = new JButton("Encrypt");
+		encryptButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//System.out.println("bouton encrypt");
-				this.boutonEncrypt();
-			}
+				k.setSequenceRotor(0, rotList.get(getKeyFirstRotorNumber().getSelectedIndex()));
+				k.setSequenceRotor(1, rotList.get(getKeySecondRotorNumber().getSelectedIndex()));
+				k.setSequenceRotor(2, rotList.get(getKeyThirdRotorNumber().getSelectedIndex()));
+				
+				boolean orientation = false;
+				if(getKeyFirstRotorOrientation().getSelectedIndex()==0) {
+					orientation = true;
+				}
+				else {
+					orientation = false;
+				}
+				k.setSequenceOrientation(0, orientation);
+				if(getKeySecondRotorOrientation().getSelectedIndex()==0) {
+					orientation = true;
+				}
+				else {
+					orientation = false;
+				}
+				k.setSequenceOrientation(1, orientation);
+				if(getKeyThirdRotorOrientation().getSelectedIndex()==0) {
+					orientation = true;
+				}
+				else {
+					orientation = false;
+				}
+				k.setSequenceOrientation(2, orientation);
+				
+				k.setSequenceInit(0, (Integer) getKeyFirstRotorInitialRotation().getValue());
+				k.setSequenceInit(1, (Integer) getKeySecondRotorInitialRotation().getValue());
+				k.setSequenceInit(2, (Integer) getKeyThirdRotorInitialRotation().getValue());
+				algo.encrypt();
+				
+				for(int i=0; i<26;i++) {
+					getTableReflector().setValueAt(ref.getNum(i), 0, i);
+					getTableRotor3().setValueAt(rot3.getUpperLaneValue(i), 0, i);
+					getTableRotor3().setValueAt(rot3.getLowerLaneValue(i), 1, i);
+					getTableRotor2().setValueAt(rot2.getUpperLaneValue(i), 0, i);
+					getTableRotor2().setValueAt(rot2.getLowerLaneValue(i), 1, i);
+					getTableRotor1().setValueAt(rot1.getUpperLaneValue(i), 0, i);
+					getTableRotor1().setValueAt(rot1.getLowerLaneValue(i), 1, i);
+					getTableAlphabet().setValueAt(abc.getLetter(i), 0, i);
+				}
 
-			private void boutonEncrypt() {
-				// TODO Auto-generated method stub
-				System.out.println("encrypt bouton");
+				encryptPane.setEditable(false);
+				decryptPane.setEditable(false);
+				decryptPane.setText("");
+				algo.setInput(encryptPane.getText());
+				algo.encrypt();
+				algo.nextStep();
+				decryptPane.setText(algo.getOutput());
 			}
 		});
-		GridBagConstraints gbc_encrypt = new GridBagConstraints();
-		gbc_encrypt.insets = new Insets(0, 0, 0, 5);
-		gbc_encrypt.gridx = 1;
-		gbc_encrypt.gridy = 0;
-		panel_2.add(encrypt, gbc_encrypt);
+		GridBagConstraints gbc_encryptButton = new GridBagConstraints();
+		gbc_encryptButton.insets = new Insets(0, 0, 0, 5);
+		gbc_encryptButton.gridx = 1;
+		gbc_encryptButton.gridy = 0;
+		panel_2.add(encryptButton, gbc_encryptButton);
 
 		nextStepButton = new JButton("Next Step");
 		nextStepButton.addActionListener(new ActionListener() {
@@ -547,17 +590,66 @@ public class GUI extends JFrame{
 		
 		
 
-		decrypt = new JButton("Decrypt");
-		decrypt.addActionListener(new ActionListener() {
+		decryptButton = new JButton("Decrypt");
+		decryptButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				k.setSequenceRotor(0, rotList.get(getKeyFirstRotorNumber().getSelectedIndex()));
+				k.setSequenceRotor(1, rotList.get(getKeySecondRotorNumber().getSelectedIndex()));
+				k.setSequenceRotor(2, rotList.get(getKeyThirdRotorNumber().getSelectedIndex()));
 				
+				boolean orientation = false;
+				if(getKeyFirstRotorOrientation().getSelectedIndex()==0) {
+					orientation = true;
+				}
+				else {
+					orientation = false;
+				}
+				k.setSequenceOrientation(0, orientation);
+				if(getKeySecondRotorOrientation().getSelectedIndex()==0) {
+					orientation = true;
+				}
+				else {
+					orientation = false;
+				}
+				k.setSequenceOrientation(1, orientation);
+				if(getKeyThirdRotorOrientation().getSelectedIndex()==0) {
+					orientation = true;
+				}
+				else {
+					orientation = false;
+				}
+				k.setSequenceOrientation(2, orientation);
+				
+				k.setSequenceInit(0, (Integer) getKeyFirstRotorInitialRotation().getValue());
+				k.setSequenceInit(1, (Integer) getKeySecondRotorInitialRotation().getValue());
+				k.setSequenceInit(2, (Integer) getKeyThirdRotorInitialRotation().getValue());
+				algo.encrypt();
+				
+				for(int i=0; i<26;i++) {
+					getTableReflector().setValueAt(ref.getNum(i), 0, i);
+					getTableRotor3().setValueAt(rot3.getUpperLaneValue(i), 0, i);
+					getTableRotor3().setValueAt(rot3.getLowerLaneValue(i), 1, i);
+					getTableRotor2().setValueAt(rot2.getUpperLaneValue(i), 0, i);
+					getTableRotor2().setValueAt(rot2.getLowerLaneValue(i), 1, i);
+					getTableRotor1().setValueAt(rot1.getUpperLaneValue(i), 0, i);
+					getTableRotor1().setValueAt(rot1.getLowerLaneValue(i), 1, i);
+					getTableAlphabet().setValueAt(abc.getLetter(i), 0, i);
+				}
+
+				encryptPane.setEditable(false);
+				decryptPane.setEditable(false);
+				encryptPane.setText("");
+				algo.setInput(decryptPane.getText());
+				algo.encrypt();
+				algo.nextStep();
+				encryptPane.setText(algo.getOutput());
 			}
 		});
-		GridBagConstraints gbc_decrypt = new GridBagConstraints();
-		gbc_decrypt.fill = GridBagConstraints.HORIZONTAL;
-		gbc_decrypt.gridx = 5;
-		gbc_decrypt.gridy = 0;
-		panel_2.add(decrypt, gbc_decrypt);
+		GridBagConstraints gbc_decryptButton = new GridBagConstraints();
+		gbc_decryptButton.fill = GridBagConstraints.HORIZONTAL;
+		gbc_decryptButton.gridx = 5;
+		gbc_decryptButton.gridy = 0;
+		panel_2.add(decryptButton, gbc_decryptButton);
 
 		panel_3 = new JPanel();
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
@@ -573,15 +665,15 @@ public class GUI extends JFrame{
 		gbl_panel_3.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
 		panel_3.setLayout(gbl_panel_3);
 
-		textPane_1 = new JTextPane();
-		textPane_1.setFont(new Font("Dialog", Font.PLAIN, 10));
-		GridBagConstraints gbc_textPane_1 = new GridBagConstraints();
-		gbc_textPane_1.weightx = 1.0;
-		gbc_textPane_1.weighty = 2.0;
-		gbc_textPane_1.fill = GridBagConstraints.BOTH;
-		gbc_textPane_1.gridx = 0;
-		gbc_textPane_1.gridy = 0;
-		panel_3.add(textPane_1, gbc_textPane_1);
+		decryptPane = new JTextPane();
+		decryptPane.setFont(new Font("Dialog", Font.PLAIN, 10));
+		GridBagConstraints gbc_decryptPane = new GridBagConstraints();
+		gbc_decryptPane.weightx = 1.0;
+		gbc_decryptPane.weighty = 2.0;
+		gbc_decryptPane.fill = GridBagConstraints.BOTH;
+		gbc_decryptPane.gridx = 0;
+		gbc_decryptPane.gridy = 0;
+		panel_3.add(decryptPane, gbc_decryptPane);
 		
 		for(int i=0; i<26;i++) {
 			this.getTableReflector().setValueAt(ref.getNum(i), 0, i);

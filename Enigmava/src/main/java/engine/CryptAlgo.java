@@ -254,6 +254,7 @@ public class CryptAlgo {
 		this.initRotor3();
 		this.initReflector();
 		int init = 0;
+		this.setPosition(0);
 		Rotor rotInit;
 
 		for (int i = 0; i < 3; i++) { // initializes the three rotors with the
@@ -337,7 +338,6 @@ public class CryptAlgo {
 																					// if
 																					// true
 						this.key.getSequenceRotor().get(rotorInt).moveLeft();
-						System.out.println(rotorInt);
 					}
 					else {
 						this.key.getSequenceRotor().get(rotorInt).moveRight(); // moves
