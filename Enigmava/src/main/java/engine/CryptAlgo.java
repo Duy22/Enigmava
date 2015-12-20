@@ -57,6 +57,10 @@ public class CryptAlgo {
 		return this.position;
 	}
 
+	public int getAlgoIndex() {
+		return this.algoIndex;
+	}
+	
 	public void setOutput(String str) {
 		this.output = str;
 	}
@@ -254,6 +258,7 @@ public class CryptAlgo {
 		this.initRotor3();
 		this.initReflector();
 		int init = 0;
+		this.setPosition(0);
 		Rotor rotInit;
 
 		for (int i = 0; i < 3; i++) { // initializes the three rotors with the
@@ -337,7 +342,6 @@ public class CryptAlgo {
 																					// if
 																					// true
 						this.key.getSequenceRotor().get(rotorInt).moveLeft();
-						System.out.println(rotorInt);
 					}
 					else {
 						this.key.getSequenceRotor().get(rotorInt).moveRight(); // moves
@@ -346,7 +350,6 @@ public class CryptAlgo {
 																				// the
 																				// right
 																				// otherwise
-						System.out.println(rotorInt);
 					}
 				}
 				
@@ -355,15 +358,9 @@ public class CryptAlgo {
 			}
 			String s = new String (charList);
 			this.setOutput(s);
-			this.position++; // increment the postion int
+			this.position++; // increment the position int
 												// to the next iteration
 
-		} else {
-			System.out.println("Next step cannot be processed because the decryption or encryption is complete"); // to
-																													// implement
-																													// lately
-																													// a
-																													// message
 		}
 	}
 
